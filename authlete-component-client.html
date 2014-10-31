@@ -17,36 +17,25 @@
     <h4>{{resources.responseTypes}}</h4>
   </template>
 
+  <script src="authlete-component-client-default-data.js"></script>
+  <script src="authlete-component-client-resources_en.js"></script>
+  <script src="authlete-component-client-resources_ja.js"></script>
+
   <script>
-    (function() {
-      var resources_en = {
-        "clientType": "Client Type",
-        "responseTypes": "Response Types"
-      };
+    Polymer({
+      created: function() {
+        this.data = authlete_component_client_default_data();
+      },
 
-      var resources_ja = {
-        "clientType": "クライアントタイプ",
-        "responseTypes": "レスポンスタイプ"
-      };
-
-      Polymer({
-        created: function() {
-          this.data = {
-            "clientType" : "PUBLIC",
-            "responseTypes" : [ "CODE" ]
-          };
-        },
-
-        ready: function() {
-          if (this.locale === "ja") {
-            this.resources = resources_ja;
-          }
-          else {
-            this.resources = resources_en;
-          }
+      ready: function() {
+        if (this.locale === "ja") {
+          this.resources = authlete_component_client_resources_ja;
         }
-      });
-    })();
+        else {
+          this.resources = authlete_component_client_resources_en;
+        }
+      }
+    });
   </script>
 
 </polymer-element>
