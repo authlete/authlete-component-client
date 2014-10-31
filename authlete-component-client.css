@@ -13,17 +13,42 @@ h4 {
   margin-bottom: 10px;
 }
 
-paper-radio-group {
+div.property_values {
+  width: 300px;
   background-color: white;
   border: 1px solid steelblue;
   border-radius: 6px;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4) inset;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 10px;
+}
+
+paper-checkbox {
+  padding: 15px 10px 15px 0;
+  border-color: steelblue;
+}
+
+paper-checkbox::shadow #ink[checked] {
+  color: steelblue;
+}
+
+paper-checkbox::shadow #checkbox.checked {
+  border-color: steelblue;
+}
+
+paper-checkbox::shadow #ink {
+  color: steelblue;
+}
+
+paper-checkbox::shadow #checkbox {
+  border-color: steelblue;
 }
 
 paper-radio-button::shadow #onRadio {
   background-color: steelblue;
+}
+
+paper-radio-button::shadow #offRadio{
+  border-color: steelblue;
 }
 
 paper-radio-button::shadow #ink {

@@ -21,7 +21,8 @@
 
   <script>
     var json = JSON.stringify({
-      "clientType": "CONFIDENTIAL"
+      "clientType": "CONFIDENTIAL",
+      "responseTypes": [ "CODE", "TOKEN", "ID_TOKEN", "CODE_ID_TOKEN" ]
     });
 
     document.querySelector('#No2').setAttribute('data', json);
