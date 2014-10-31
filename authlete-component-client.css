@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  border: 1px solid steelblue;
+  padding: 10px;
+  background-color: #fcfcfc;
+  color: lightslategray;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Segoe UI', 'Arial', sans-serif;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+paper-radio-group {
+  background-color: white;
+  border: 1px solid steelblue;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4) inset;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+paper-radio-button::shadow #onRadio {
+  background-color: steelblue;
+}
+
+paper-radio-button::shadow #ink {
+  color: steelblue;
+}
+
+

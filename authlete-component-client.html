@@ -1,0 +1,52 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+
+<polymer-element name="authlete-component-client" attributes="data locale">
+
+  <template>
+
+    <link rel="stylesheet" href="authlete-component-client.css">
+
+    <h4>{{resources.clientType}}</h4>
+    <paper-radio-group selected="{{data.clientType}}">
+      <paper-radio-button name="PUBLIC" label="PUBLIC"></paper-radio-button>
+      <paper-radio-button name="CONFIDENTIAL" label="CONFIDENTIAL"></paper-radio-button>
+    </paper-radio-group>
+
+    <h4>{{resources.responseTypes}}</h4>
+  </template>
+
+  <script>
+    (function() {
+      var resources_en = {
+        "clientType": "Client Type",
+        "responseTypes": "Response Types"
+      };
+
+      var resources_ja = {
+        "clientType": "クライアントタイプ",
+        "responseTypes": "レスポンスタイプ"
+      };
+
+      Polymer({
+        created: function() {
+          this.data = {
+            "clientType" : "PUBLIC",
+            "responseTypes" : [ "CODE" ]
+          };
+        },
+
+        ready: function() {
+          if (this.locale === "ja") {
+            this.resources = resources_ja;
+          }
+          else {
+            this.resources = resources_en;
+          }
+        }
+      });
+    })();
+  </script>
+
+</polymer-element>

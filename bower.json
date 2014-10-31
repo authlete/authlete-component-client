@@ -1,0 +1,29 @@
+{
+  "name": "authlete-component-client",
+  "version": "0.0.0",
+  "authors": [
+    "Takahiko Kawasaki <taka@authlete.com>"
+  ],
+  "description": "A UI component to display and configure properties of a third-party client application hosted by Authlete.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "authlete"
+  ],
+  "main": "authlete-component-client.html",
+  "license": "Apache License, Version 2.0",
+  "homepage": "https://github.com/authlete/authlete-component-client/",
+  "ignore": [
+    "/.*",
+    "/tests/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.4.2",
+    "paper-radio-group": "Polymer/paper-radio-group#~0.4.2",
+    "paper-radio-button": "Polymer/paper-radio-button#~0.4.2"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^0.7.3"
+  }
+}
