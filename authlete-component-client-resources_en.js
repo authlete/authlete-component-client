@@ -1,4 +1,21 @@
 var authlete_component_client_resources_en = {
+  "applicationType": "Application Type",
+  "clientConfiguration": "Client Configuration",
+  "clientId": "Client ID",
+  "clientName": "Client Name",
   "clientType": "Client Type",
-  "responseTypes": "Response Types"
+  "clientUri": "Home Page URL",
+  "close": "Close",
+  "create": "Create",
+  "encryptionAlg": "Encryption Algorithm (alg)",
+  "encryptionEnc": "Encryption Algorithm (enc)",
+  "grantTypes": "Grant Types",
+  "idToken": "ID token",
+  "logoUri": "Logo URL",
+  "policyUri": "Policy Page URL",
+  "responseTypes": "Response Types",
+  "signAlg": "Signature Algorithm",
+  "tosUri": "Terms Of Service Page URL",
+  "update": "Update",
+  "userInfoEndpoint": "UserInfo endpoint"
 };

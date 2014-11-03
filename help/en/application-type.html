@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>Application Type</title>
+<link rel="stylesheet" href="../help.css">
+</head>
+<body>
+<div class="help">
+<p>
+<strong>Application type</strong> denotes the basic category of
+a client application. Either "<code>web</code>" or "<code>native</code>"
+can be chosen. Or, you can decide not to choose either.
+</p>
+<p>
+The value of this configuration parameter affects the validation steps
+for a redirect URI. When "<code>web</code>" is chosen, the scheme of
+redirect URIs for the <a href="http://tools.ietf.org/html/rfc6749#section-1.3.2"
+target="_blank">implicit flow</a> must be "<code>https</code>" and the
+hostname part of them must not be "<code>localhost</code>". On the other
+hand, when "<code>native</code>" is chosen, the scheme of redirect URIs
+can be a custom scheme, or "<code>http</code>" only when the hostname part
+is "<code>localhost</code>".
+</p>
+<p>
+This configuration parameter corresponds to "<code>application_type</code>"
+defined in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+target="_blank">2. Client Metadata</a> of
+<a href="http://openid.net/specs/openid-connect-registration-1_0.html"
+target="_blank">OpenID Connect Dynamic Client Registration 1.0</a>.
+</p>
+</div>
+</body>
+</html>

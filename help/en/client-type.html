@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>Client Type</title>
+<link rel="stylesheet" href="../help.css">
+</head>
+<body>
+<div class="help">
+<p>
+<strong>Client type</strong> indicates whether the client application can keep its
+client secret confidential or not. The value is either "<code>public</code>"
+or "<code>confidential</code>". If your client application cannot keep its
+client secret confidential, choose "<code>public</code>". For example,
+choose "<code>public</code>" for Android/iOS applications.
+</p>
+<p>
+The definition of client type is written in <a href="http://tools.ietf.org/html/rfc6749#section-2.1"
+target="_blank">2.1. Client Types</a> of <a href="http://tools.ietf.org/html/rfc6749"
+target="_blank">RFC 6749</a>.
+</p>
+<p>
+Note that "<code>confidential</code>" clients are always requested to
+present its client credentials at the <a href="http://tools.ietf.org/html/rfc6749#section-3.2"
+target="_blank">token endpoint</a>.
+</p>
+</div>
+</body>
+</html>

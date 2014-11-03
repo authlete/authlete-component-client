@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>応答種別</title>
+<link rel="stylesheet" href="../help.css">
+</head>
+<body>
+<div class="help">
+<p>
+<strong>応答種別</strong>は、クライアントアプリケーションが <code>response_type</code>
+リクエストパラメータの値として指定する可能性のある値のリストです。
+登録されていない値を <code>response_type</code> に指定した authorization
+リクエストは拒否されます。
+</p>
+<p>
+<a href="http://tools.ietf.org/html/rfc6749" target="_blank">RFC 6749</a>
+では、<code>response_type</code> リクエストパラメーターの有効な値は
+<code>code</code> と <code>token</code> の二つだけでした。
+しかし、OpenID Connect はこれを、<code>code</code>, <code>id_token</code>,
+<code>token</code> の任意の組み合わせ、および <code>none</code> へと拡張しました。
+この結果、有効な値の数は 8 となりました。
+詳細は <a href="http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html"
+target="_blank">OAuth 2.0 Multiple Response Type Encoding Practices</a>
+を参照してください。
+</p>
+<dl>
+<dt><strong>code</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが authorization code をリクエストする可能性があることを示します。
+クライアントアプリケーションが <a href="http://tools.ietf.org/html/rfc6749#section-4.1"
+target="_blank">authorization code フロー</a>を使用する可能性がある場合はチェックしてください。
+</p>
+<p>
+注意: <code>response_type</code> リクエストパラメーターの値が <code>code</code>
+であったとしても、その authorization リクエストの <code>scope</code> パラメーターに
+<code>openid</code> が含まれる場合、token エンドポイントにおいて、アクセストークンに加えて
+<a href="http://openid.net/specs/openid-connect-core-1_0.html#IDToken"
+target="_blank">ID トークン</a>も発行されます。
+</p>
+</dd>
+<dt><strong>token</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが authorization エンドポイントで<a href=
+"http://tools.ietf.org/html/rfc6749#section-1.4" target="_blank"
+>アクセストークン</a>をリクエストする可能性があることを示します。
+クライアントアプリケーションが <a href="http://tools.ietf.org/html/rfc6749#section-4.2"
+target="_blank">implicit フロー</a>を使用する可能性がある場合はチェックしてください。
+</p>
+</dd>
+<dt><strong>id_token</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが authorization エンドポイントで <a href=
+"http://openid.net/specs/openid-connect-core-1_0.html#IDToken" target="_blank"
+>ID トークン</a>をリクエストする可能性があることを示します。
+</p>
+</dd>
+<dt><strong>code token</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが authorization エンドポイントで authorization code
+と<a href="http://tools.ietf.org/html/rfc6749#section-1.4" target="_blank"
+>アクセストークン</a>をリクエストする可能性があることを示します。
+</p>
+</dd>
+<dt><strong>code id_token</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが authorization エンドポイントで authorization code と
+<a href="http://openid.net/specs/openid-connect-core-1_0.html#IDToken"
+target="_blank">ID トークン</a>をリクエストする可能性があることを示します。
+</p>
+</dd>
+<dt><strong>id_token token</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが authorization エンドポイントで <a href=
+"http://openid.net/specs/openid-connect-core-1_0.html#IDToken" target="_blank"
+>ID トークン</a>と<a href="http://tools.ietf.org/html/rfc6749#section-1.4"
+target="_blank">アクセストークン</a>をリクエストする可能性があることを示します。
+</p>
+</dd>
+<dt><strong>code id_token token</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが authorization エンドポイントで authorization code、<a
+href="http://openid.net/specs/openid-connect-core-1_0.html#IDToken" target="_blank"
+>ID トークン</a>、<a href="http://tools.ietf.org/html/rfc6749#section-1.4"
+target="_blank">アクセストークン</a>をリクエストする可能性があることを示します。
+</p>
+</dd>
+<dt><strong>none</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが、オブジェクトの返却を求めない authorization
+リクエストを投げる可能性があることを示します。このユースケースは特別です。
+詳細は <a href="http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html"
+target="_blank">OAuth 2.0 Multiple Response Type Encoding Practices</a> の
+<a href="http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html#none"
+target="_blank">4. None Response Type</a> を参照してください。
+</p>
+</dd>
+</dl>
+</div>
+</body>
+</html>

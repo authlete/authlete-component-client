@@ -1,5 +1,9 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
@@ -9,50 +13,326 @@
 
     <link rel="stylesheet" href="authlete-component-client.css">
 
-    <h4>{{resources.clientType}}</h4>
-    <div class="property_values">
-      <paper-radio-group selected="{{data.clientType}}">
-        <paper-radio-button name="PUBLIC" label="PUBLIC"></paper-radio-button>
-        <paper-radio-button name="CONFIDENTIAL" label="CONFIDENTIAL"></paper-radio-button>
-      </paper-radio-group>
-    </div>
+    <div id="container">
 
-    <h4>{{resources.responseTypes}}</h4>
-    <div class="property_values">
-      <div center horizontal layout>
-        <div flex>code</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'CODE')}}"></paper-checkbox>
-      </div>
-      <div center horizontal layout>
-        <div flex>token</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'TOKEN')}}"></paper-checkbox>
-      </div>
-      <div center horizontal layout>
-        <div flex>id_token</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'ID_TOKEN')}}"></paper-checkbox>
-      </div>
-      <div center horizontal layout>
-        <div flex>code token</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'CODE_TOKEN')}}"></paper-checkbox>
-      </div>
-      <div center horizontal layout>
-        <div flex>code id_token</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'CODE_ID_TOKEN')}}"></paper-checkbox>
-      </div>
-      <div center horizontal layout>
-        <div flex>id_token token</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'ID_TOKEN_TOKEN')}}"></paper-checkbox>
-      </div>
-      <div center horizontal layout>
-        <div flex>code id_token token</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'CODE_ID_TOKEN_TOKEN')}}"></paper-checkbox>
-      </div>
-      <div center horizontal layout>
-        <div flex>none</div>
-        <paper-checkbox checked?="{{responseTypesContains(data, 'NONE')}}"></paper-checkbox>
-      </div>
-    </div>
+    <h2>{{resources.clientConfiguration}}</h2>
 
+    <div class="property-group" horizontal layout wrap>
+      <template if="{{data.clientId != null}}">
+        <!-- Client ID -->
+        <div class="property">
+          <h4 horizontal layout>
+            <span flex>{{resources.clientId}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleClientIdHelp}}"></paper-icon-button>
+          </h4>
+          <paper-dialog id="clientId-help">
+            <h3>{{resources.clientId}}</h3>
+            <iframe src="help/{{locale}}/client-id.html"></iframe>
+            <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+          </paper-dialog>
+          <div class="property-value disabled">
+            <paper-input value="{{data.clientId}}" disabled readonly></paper-input>
+          </div>
+        </div>
+      </template>
+
+      <!-- Client Name -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.clientName}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleClientNameHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="clientName-help">
+          <h3>{{resources.clientName}}</h3>
+          <iframe src="help/{{locale}}/client-name.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-input required value="{{data.clientName}}"></paper-input>
+        </div>
+      </div>
+
+      <!-- Client Type -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.clientType}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleClientTypeHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="clientType-help">
+          <h3>{{resources.clientType}}</h3>
+          <iframe src="help/{{locale}}/client-type.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.clientType}}">
+            <paper-radio-button name="PUBLIC" label="public"></paper-radio-button>
+            <paper-radio-button name="CONFIDENTIAL" label="confidential"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- Application Type -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.applicationType}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleApplicationTypeHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="applicationType-help">
+          <h3>{{resources.applicationType}}</h3>
+          <iframe src="help/{{locale}}/application-type.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.applicationType}}">
+            <paper-radio-button name="WEB" label="web" toggles="true"></paper-radio-button>
+            <paper-radio-button name="NATIVE" label="native" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <div class="property-group" horizontal layout wrap>
+
+      <!-- Response Types -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.responseTypes}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleResponseTypesHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="responseTypes-help">
+          <h3>{{resources.responseTypes}}</h3>
+          <iframe src="help/{{locale}}/response-types.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <div center horizontal layout>
+            <div flex>code</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'CODE')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>token</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'TOKEN')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>id_token</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'ID_TOKEN')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>code token</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'CODE_TOKEN')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>code id_token</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'CODE_ID_TOKEN')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>id_token token</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'ID_TOKEN_TOKEN')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>code id_token token</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'CODE_ID_TOKEN_TOKEN')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>none</div>
+            <paper-checkbox checked?="{{responseTypesContains(data, 'NONE')}}"></paper-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grant Types -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.grantTypes}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleGrantTypesHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="grantTypes-help">
+          <h3>{{resources.grantTypes}}</h3>
+          <iframe src="help/{{locale}}/grant-types.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <div center horizontal layout>
+            <div flex>authorization_code</div>
+            <paper-checkbox checked?="{{grantTypesContains(data, 'AUTHORIZATION_CODE')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>implicit</div>
+            <paper-checkbox checked?="{{grantTypesContains(data, 'IMPLICIT')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>password</div>
+            <paper-checkbox checked?="{{grantTypesContains(data, 'PASSWORD')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>client_credentials</div>
+            <paper-checkbox checked?="{{grantTypesContains(data, 'CLIENT_CREDENTIALS')}}"></paper-checkbox>
+          </div>
+          <div center horizontal layout>
+            <div flex>refresh_token</div>
+            <paper-checkbox checked?="{{grantTypesContains(data, 'REFRESH_TOKEN')}}"></paper-checkbox>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <div class="property-group" horizontal layout wrap>
+
+      <!-- Client URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.clientUri}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleClientUriHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="clientUri-help">
+          <h3>{{resources.clientUri}}</h3>
+          <iframe src="help/{{locale}}/client-uri.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-input class="uri" value="{{data.clientUri}}"></paper-input>
+        </div>
+      </div>
+
+      <!-- Logo URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.logoUri}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleLogoUriHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="logoUri-help">
+          <h3>{{resources.logoUri}}</h3>
+          <iframe src="help/{{locale}}/logo-uri.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-input class="uri" value="{{data.logoUri}}"></paper-input>
+        </div>
+      </div>
+
+      <!-- Policy URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.policyUri}}</span>
+          <paper-icon-button icon="help" on-click="{{togglePolicyUriHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="policyUri-help">
+          <h3>{{resources.policyUri}}</h3>
+          <iframe src="help/{{locale}}/policy-uri.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-input class="uri" value="{{data.policyUri}}"></paper-input>
+        </div>
+      </div>
+
+      <!-- Terms Of Service URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.tosUri}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleTosUriHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="tosUri-help">
+          <h3>{{resources.tosUri}}</h3>
+          <iframe src="help/{{locale}}/tos-uri.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-input class="uri" value="{{data.tosUri}}"></paper-input>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <h3>{{resources.idToken}}</h3>
+
+    <div class="property-group" horizontal layout wrap>
+
+      <div class="property">
+        <h4>{{resources.signAlg}}</h4>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.idTokenSignAlg}}">
+            <paper-radio-button name="HS256" label="HS256"></paper-radio-button>
+            <paper-radio-button name="HS384" label="HS384"></paper-radio-button>
+            <paper-radio-button name="HS512" label="HS512"></paper-radio-button>
+            <paper-radio-button name="RS256" label="RS256"></paper-radio-button>
+            <paper-radio-button name="RS384" label="RS384"></paper-radio-button>
+            <paper-radio-button name="RS512" label="RS512"></paper-radio-button>
+            <paper-radio-button name="ES256" label="ES256"></paper-radio-button>
+            <paper-radio-button name="ES384" label="ES384"></paper-radio-button>
+            <paper-radio-button name="ES512" label="ES512"></paper-radio-button>
+            <paper-radio-button name="PS256" label="PS256"></paper-radio-button>
+            <paper-radio-button name="PS384" label="PS384"></paper-radio-button>
+            <paper-radio-button name="PS512" label="PS512"></paper-radio-button>
+            <paper-radio-button name="NONE"  label="none"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <div class="property">
+        <h4>{{resources.encryptionAlg}}</h4>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.idTokenEncryptionAlg}}">
+            <paper-radio-button name="RSA1_5" label="RSA" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RSA_OAEP" label="RSA_OAEP" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RSA_OAEP_256" label="RSA_OAEP_256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="DIR" label="dir" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <div class="property">
+        <h4>{{resources.encryptionEnc}}</h4>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.idTokenEncryptionEnc}}">
+            <paper-radio-button name="A128CBC_HS256" label="A128CBC_HS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A192CBC_HS384" label="A192CBC_HS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A256CBC_HS512" label="A256CBC_HS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A128GCM" label="A128GCM" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A192GCM" label="A192GCM" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A256GCM" label="A256GCM" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <h3>{{resources.userInfoEndpoint}}</h3>
+
+    <div class="property-group" horizontal layout wrap>
+
+      <div class="property">
+        <h4>{{resources.signAlg}}</h4>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.userInfoSignAlg}}">
+            <paper-radio-button name="HS256" label="HS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="HS384" label="HS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="HS512" label="HS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RS256" label="RS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RS384" label="RS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RS512" label="RS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="ES256" label="ES256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="ES384" label="ES384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="ES512" label="ES512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="PS256" label="PS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="PS384" label="PS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="PS512" label="PS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="NONE"  label="none"  toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <template if="{{data.clientId != null}}">
+      <paper-button raised class="submit" on-click="update">{{resources.update}}</paper-button>
+    </template>
+    <template if="{{data.clientId == null}}">
+      <paper-button raised class="submit" on-click="create">{{resources.create}}</paper-button>
+    </template>
+    </div> <!-- container -->
   </template>
 
   <script src="authlete-component-client-default-data.js"></script>
@@ -70,16 +350,74 @@
       },
 
       ready: function() {
-        if (this.locale === "ja") {
-          this.resources = authlete_component_client_resources_ja;
-        }
-        else {
-          this.resources = authlete_component_client_resources_en;
+        switch (this.locale) {
+          case "ja":
+            this.resources = authlete_component_client_resources_ja;
+            break;
+
+          default:
+            this.locale = "en";
+            this.resources = authlete_component_client_resources_en;
+            break;
         }
       },
 
       responseTypesContains: function(data, value) {
         return (data !== undefined) && (data !== null) && contains(data.responseTypes, value);
+      },
+
+      grantTypesContains: function(data, value) {
+        return (data !== undefined) && (data !== null) && contains(data.grantTypes, value);
+      },
+
+      toggle: function(selector) {
+        this.$.container.querySelector(selector).toggle();
+      },
+
+      toggleClientIdHelp: function() {
+        this.toggle('#clientId-help');
+      },
+
+      toggleClientNameHelp: function() {
+        this.toggle('#clientName-help');
+      },
+
+      toggleClientTypeHelp: function() {
+        this.toggle('#clientType-help');
+      },
+
+      toggleApplicationTypeHelp: function() {
+        this.toggle('#applicationType-help');
+      },
+
+      toggleResponseTypesHelp: function() {
+        this.toggle('#responseTypes-help');
+      },
+
+      toggleGrantTypesHelp: function() {
+        this.toggle('#grantTypes-help');
+      },
+
+      toggleClientUriHelp: function() {
+        this.toggle('#clientUri-help');
+      },
+
+      toggleLogoUriHelp: function() {
+        this.toggle('#logoUri-help');
+      },
+
+      togglePolicyUriHelp: function() {
+        this.toggle('#policyUri-help');
+      },
+
+      toggleTosUriHelp: function() {
+        this.toggle('#tosUri-help');
+      },
+
+      create: function() {
+      },
+
+      update: function() {
       }
     });
   </script>

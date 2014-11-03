@@ -1,0 +1,17 @@
+div.help {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Segoe UI', 'Arial', sans-serif;
+}
+
+code
+{
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+dl, dd {
+  margin-left: 1em;
+}
+

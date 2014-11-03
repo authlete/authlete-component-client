@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>アプリケーション種別</title>
+<link rel="stylesheet" href="../help.css">
+</head>
+<body>
+<div class="help">
+<p>
+<strong>アプリケーション種別</strong>はクライアントアプリケーションの基本的なカテゴリーを示します。
+<code>web</code> もしくは <code>native</code> が選択可能です。
+もしくは、どちらも選ばないとすることもできます。
+</p>
+<p>
+この設定パラメーターの値はリダイレクト URI の検証手順に影響します。
+<code>web</code> が選択された場合は、<a href="http://tools.ietf.org/html/rfc6749#section-1.3.2"
+target="_blank">implicit フロー</a>で使用するリダイレクト URI のスキームは
+<code>https</code> でなければならず、また、ホスト名に <code>localhost</code>
+を用いてはなりません。
+一方、<code>native</code> が選択された場合は、リダイレクト URI
+のスキームはカスタムスキーム、もしくはホスト名が <code>localhost</code>
+の場合に限り <code>http</code>、とすることができます。
+</p>
+<p>
+この設定パラメーターは <a href="http://openid.net/specs/openid-connect-registration-1_0.html"
+target="_blank">OpenID Connect Dynamic Client Registration 1.0</a> の
+<a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+target="_blank">2. Client Metadata</a> で定義されている <code>application_type</code>
+に対応します。
+</p>
+</div>
+</body>
+</html>

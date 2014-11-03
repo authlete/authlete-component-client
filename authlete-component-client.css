@@ -9,17 +9,61 @@
   -webkit-font-smoothing: antialiased;
 }
 
-h4 {
-  margin-bottom: 10px;
+h2 {
+  color: skyblue;
 }
 
-div.property_values {
-  width: 300px;
+h3 {
+  color: steelblue;
+}
+
+h4 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+div.property-group {
+/*
+  -webkit-columns: 300px auto;
+     -moz-columns: 300px auto;
+      -ms-columns: 300px auto;
+       -o-columns: 300px auto;
+          columns: 300px auto;
+  column-fill: auto;
+ */
+}
+
+div.property {
+  width: 280px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+
+/*
+  -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+                 break-inside: avoid;
+ */
+}
+
+div.property.uri {
+  width: 430px;
+}
+
+div.property-value {
   background-color: white;
   border: 1px solid steelblue;
   border-radius: 6px;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4) inset;
   padding: 5px 10px;
+}
+
+div.property-value.disabled {
+  background-color: #F0F0F0;
+}
+
+paper-button.submit {
+  background: steelblue;
+  color: white;
 }
 
 paper-checkbox {
@@ -43,11 +87,33 @@ paper-checkbox::shadow #checkbox {
   border-color: steelblue;
 }
 
+paper-dialog {
+  border: 1px solid steelblue;
+}
+
+paper-dialog iframe {
+  border: 0;
+  height: 300px;
+}
+
+paper-icon-button {
+  padding: 0;
+  vertical-align: middle;
+}
+
+paper-input {
+  width: 260px;
+}
+
+paper-input.uri {
+  width: 410px;
+}
+
 paper-radio-button::shadow #onRadio {
   background-color: steelblue;
 }
 
-paper-radio-button::shadow #offRadio{
+paper-radio-button::shadow #offRadio {
   border-color: steelblue;
 }
 

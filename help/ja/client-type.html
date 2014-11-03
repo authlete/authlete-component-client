@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>クライアント種別</title>
+<link rel="stylesheet" href="../help.css">
+</head>
+<body>
+<div class="help">
+<p>
+<strong>クライアント種別</strong>はクライアントアプリケーションがクライアント・シークレットを隠しておくことができるかどうかを示しています。
+取りうる値は <code>public</code> か <code>confidential</code> のどちらかです。
+クライアントアプリケーションがクライアント・シークレットを隠しておくことができない場合は
+<code>public</code> を選んでください。
+例えば、Android/iOS アプリケーションの場合は <code>public</code> を選んでください。
+</p>
+<p>
+クライアント種別の定義は <a href="http://tools.ietf.org/html/rfc6749" target="_blank">RFC 6749</a> の
+<a href="http://tools.ietf.org/html/rfc6749#section-2.1" target="_blank">2.1. Client Types</a>
+に記述されています。
+</p>
+<p>
+<code>confidential</code> クライアントは常に<a href="http://tools.ietf.org/html/rfc6749#section-3.2"
+target="_blank">トークンエンドポイント</a>でクライアント・クレデンシャルズの提示が要求されます。
+</p>
+</div>
+</body>
+</html>

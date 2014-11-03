@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>Grant Types</title>
+<link rel="stylesheet" href="../help.css">
+</head>
+<body>
+<div class="help">
+<p>
+<strong>Grant types</strong> are a list of <a href="http://tools.ietf.org/html/rfc6749#section-1.2"
+target="_blank">protocol flows</a> that the client application may use.
+This service rejects non-registered protocol flows.
+</p>
+<dl>
+<dt><strong>authorization_code</strong></dt>
+<dd>
+<p>
+Denotes that the client application may use the <a href="http://tools.ietf.org/html/rfc6749#section-4.1"
+target="_blank">authorization code flow</a>. If the value of "<code>response_type</code>"
+request parameter of an <a href="http://tools.ietf.org/html/rfc6749#section-4.1.1" target="_blank"
+>authorization request</a> from your client application may contain "<code>code</code>",
+check this.
+</p>
+</dd>
+<dt><strong>implicit</strong></dt>
+<dd>
+<p>
+Denotes that the client application may use the <a href="http://tools.ietf.org/html/rfc6749#section-4.2"
+target="_blank">implicit flow</a>. If the value of "<code>response_type</code>"
+request parameter of an <a href="http://tools.ietf.org/html/rfc6749#section-4.2.1" target="_blank"
+>authorization request</a> from your client application may contain "<code>token</code>" or
+"<code>id_token</code>" (or both), check this.
+</p>
+</dd>
+<dt><strong>password</strong></dt>
+<dd>
+<p>
+Denotes that the client application may use the <a href="http://tools.ietf.org/html/rfc6749#section-4.3"
+target="_blank">resource owner password credentials flow</a>. If your client application may use
+"<code>password</code>" as the value of "<code>grant_type</code>" request parameter of a
+<a href="http://tools.ietf.org/html/rfc6749#section-4.3.2" target="_blank">token request</a>,
+check this.
+</p>
+</dd>
+<dt><strong>client_credentials</strong></dt>
+<dd>
+<p>
+Denotes that the client application may use the <a href="http://tools.ietf.org/html/rfc6749#section-4.4"
+target="_blank">client credentials flow</a>. If your client application may use
+"<code>client_credentials</code>" as the value of "<code>grant_type</code>" request parameter of a
+<a href="http://tools.ietf.org/html/rfc6749#section-4.4.2" target="_blank">token request</a>,
+check this.
+</p>
+</dd>
+<dt><strong>refresh_token</strong></dt>
+<dd>
+<p>
+Denotes that the client application wants to be issued a refresh token.
+If your client application may use "<code>refresh_token</code>" as the value of
+"<code>grant_type</code>" request parameter of a
+<a href="http://tools.ietf.org/html/rfc6749#section-6" target="_blank">token request</a>,
+check this.
+</p>
+</dd>
+</dl>
+</div>
+</body>
+</html>

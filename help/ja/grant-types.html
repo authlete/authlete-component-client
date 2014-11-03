@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>認可種別</title>
+<link rel="stylesheet" href="../help.css">
+</head>
+<body>
+<div class="help">
+<p>
+<strong>認可種別</strong>はクライアントアプリケーションが使用する可能性のある<a href=
+"http://tools.ietf.org/html/rfc6749#section-1.2" target="_blank">プロトコルフロー</a>のリストです。
+登録されていないプロトコルフローはサービスにより拒否されます。
+</p>
+<dl>
+<dt><strong>authorization_code</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが<a href="http://tools.ietf.org/html/rfc6749#section-4.1"
+target="_blank">authorization code フロー</a>を使用する可能性があることを示します。
+クライアントアプリケーションからの <a href="http://tools.ietf.org/html/rfc6749#section-4.1.1"
+target="_blank">authorization リクエスト</a>の <code>response_type</code>
+リクエストパラメーターが <code>code</code> を含むことがある場合はチェックしてください。
+</p>
+</dd>
+<dt><strong>implicit</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが<a href="http://tools.ietf.org/html/rfc6749#section-4.2"
+target="_blank">implicit コードフロー</a>を使用する可能性があることを示します。
+クライアントアプリケーションからの <a href="http://tools.ietf.org/html/rfc6749#section-4.2.1"
+target="_blank">authorization リクエスト</a>の <code>response_type</code>
+リクエストパラメーターが <code>token</code> もしくは <code>id_token</code>
+(または両方) を含むことがある場合はチェックしてください。
+</p>
+</dd>
+<dt><strong>password</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが<a href="http://tools.ietf.org/html/rfc6749#section-4.3"
+target="_blank">resource owner password credentials フロー</a>を使用する可能性があることを示します。
+クライアントアプリケーションが <a href="http://tools.ietf.org/html/rfc6749#section-4.3.2"
+target="_blank">token リクエスト</a>の <code>grant_type</code> リクエストパラメーターの値として
+<code>password</code> を使用する可能性がある場合はチェックしてください。
+</p>
+</dd>
+<dt><strong>client_credentials</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションが<a href="http://tools.ietf.org/html/rfc6749#section-4.4"
+target="_blank">client credentials フロー</a>を使用する可能性があることを示します。
+クライアントアプリケーションが <a href="http://tools.ietf.org/html/rfc6749#section-4.4.2"
+target="_blank">token リクエスト</a>の <code>grant_type</code> リクエストパラメーターの値として
+<code>client_credentials</code> を使用する可能性がある場合はチェックしてください。
+</p>
+</dd>
+<dt><strong>refresh_token</strong></dt>
+<dd>
+<p>
+クライアントアプリケーションがリフレッシュトークンの発行を希望することを示します。
+クライアントアプリケーションが <a href="http://tools.ietf.org/html/rfc6749#section-6"
+target="_blank">token リクエスト</a>の <code>grant_type</code> リクエストパラメーターの値として
+<code>refresh_token</code> を使用する可能性がある場合はチェックしてください。
+</p>
+</dd>
+</dl>
+</div>
+</body>
+</html>
