@@ -19,6 +19,7 @@
 
     <div class="property-group" horizontal layout wrap>
       <template if="{{data.clientId != null}}">
+
         <!-- Client ID -->
         <div class="property">
           <h4 horizontal layout>
@@ -249,9 +250,18 @@
     <h3>{{resources.idToken}}</h3>
 
     <div class="property-group" horizontal layout wrap>
-
+      
+      <!-- Id Token Sign Algorithm -->
       <div class="property">
-        <h4>{{resources.signAlg}}</h4>
+        <h4 horizontal layout>
+          <span flex>{{resources.signAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleIdTokenSignAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="idTokenSignAlg-help">
+          <h3>{{resources.signAlg}}</h3>
+          <iframe src="help/{{locale}}/id-token-sign-alg.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
         <div class="property-value">
           <paper-radio-group selected="{{data.idTokenSignAlg}}">
             <paper-radio-button name="HS256" label="HS256"></paper-radio-button>
@@ -271,8 +281,17 @@
         </div>
       </div>
 
+      <!-- Id Token Encryption Algorithm (alg) -->
       <div class="property">
-        <h4>{{resources.encryptionAlg}}</h4>
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleIdTokenEncryptionAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="idTokenEncryptionAlg-help">
+          <h3>{{resources.encryptionAlg}}</h3>
+          <iframe src="help/{{locale}}/id-token-encryption-alg.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
         <div class="property-value">
           <paper-radio-group selected="{{data.idTokenEncryptionAlg}}">
             <paper-radio-button name="RSA1_5" label="RSA" toggles="true"></paper-radio-button>
@@ -283,8 +302,17 @@
         </div>
       </div>
 
+      <!-- Id Token Encryption Algorithm (enc) -->
       <div class="property">
-        <h4>{{resources.encryptionEnc}}</h4>
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionEnc}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleIdTokenEncryptionEncHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="idTokenEncryptionEnc-help">
+          <h3>{{resources.encryptionEnc}}</h3>
+          <iframe src="help/{{locale}}/id-token-encryption-enc.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
         <div class="property-value">
           <paper-radio-group selected="{{data.idTokenEncryptionEnc}}">
             <paper-radio-button name="A128CBC_HS256" label="A128CBC_HS256" toggles="true"></paper-radio-button>
@@ -303,8 +331,17 @@
 
     <div class="property-group" horizontal layout wrap>
 
+      <!-- User Info Sign Algorithm -->
       <div class="property">
-        <h4>{{resources.signAlg}}</h4>
+        <h4 horizontal layout>
+          <span flex>{{resources.signAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleUserInfoSignAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="userInfoSignAlg-help">
+          <h3>{{resources.signAlg}}</h3>
+          <iframe src="help/{{locale}}/user-info-sign-alg.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
         <div class="property-value">
           <paper-radio-group selected="{{data.userInfoSignAlg}}">
             <paper-radio-button name="HS256" label="HS256" toggles="true"></paper-radio-button>
@@ -323,7 +360,131 @@
           </paper-radio-group>
         </div>
       </div>
+        
+      <!-- User Info Encryption Algorithm (alg) -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleUserInfoEncryptionAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="userInfoEncryptionAlg-help">
+          <h3>{{resources.encryptionAlg}}</h3>
+          <iframe src="help/{{locale}}/user-info-encryption-alg.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.userInfoEncryptionAlg}}">
+            <paper-radio-button name="RSA1_5" label="RSA" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RSA_OAEP" label="RSA_OAEP" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RSA_OAEP_256" label="RSA_OAEP_256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="DIR" label="dir" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+        
+      <!-- User Info Encryption Algorithm (enc) -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionEnc}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleUserInfoEncryptionEncHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="userInfoEncryptionEnc-help">
+          <h3>{{resources.encryptionEnc}}</h3>
+          <iframe src="help/{{locale}}/user-info-encryption-enc.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.userInfoEncryptionEnc}}">
+            <paper-radio-button name="A128CBC_HS256" label="A128CBC_HS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A192CBC_HS384" label="A192CBC_HS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A256CBC_HS512" label="A256CBC_HS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A128GCM" label="A128GCM" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A192GCM" label="A192GCM" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A256GCM" label="A256GCM" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+        
+    </div> <!-- property-group -->
+        
+    <h3>{{resources.requestObject}}</h3>
 
+    <div class="property-group" horizontal layout wrap>
+
+      <!-- Request Sign Algorithm -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.signAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleRequestSignAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="requestSignAlg-help">
+          <h3>{{resources.signAlg}}</h3>
+          <iframe src="help/{{locale}}/request-sign-alg.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.requestSignAlg}}">
+            <paper-radio-button name="HS256" label="HS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="HS384" label="HS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="HS512" label="HS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RS256" label="RS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RS384" label="RS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RS512" label="RS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="ES256" label="ES256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="ES384" label="ES384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="ES512" label="ES512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="PS256" label="PS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="PS384" label="PS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="PS512" label="PS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="NONE"  label="none"  toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+        
+      <!-- Request Encryption Algorithm (alg) -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleRequestEncryptionAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="requestEncryptionAlg-help">
+          <h3>{{resources.encryptionAlg}}</h3>
+          <iframe src="help/{{locale}}/request-encryption-alg.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.requestEncryptionAlg}}">
+            <paper-radio-button name="RSA1_5" label="RSA" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RSA_OAEP" label="RSA_OAEP" toggles="true"></paper-radio-button>
+            <paper-radio-button name="RSA_OAEP_256" label="RSA_OAEP_256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="DIR" label="dir" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+        
+      <!-- Request Encryption Algorithm (enc) -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionEnc}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleRequestEncryptionEncHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="requestEncryptionEnc-help">
+          <h3>{{resources.encryptionEnc}}</h3>
+          <iframe src="help/{{locale}}/request-encryption-enc.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group selected="{{data.requestEncryptionEnc}}">
+            <paper-radio-button name="A128CBC_HS256" label="A128CBC_HS256" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A192CBC_HS384" label="A192CBC_HS384" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A256CBC_HS512" label="A256CBC_HS512" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A128GCM" label="A128GCM" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A192GCM" label="A192GCM" toggles="true"></paper-radio-button>
+            <paper-radio-button name="A256GCM" label="A256GCM" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+        
     </div> <!-- property-group -->
 
     <template if="{{data.clientId != null}}">
@@ -413,7 +574,43 @@
       toggleTosUriHelp: function() {
         this.toggle('#tosUri-help');
       },
+      
+      toggleIdTokenSignAlgHelp: function() {
+          this.toggle('#idTokenSignAlg-help');
+      },
 
+      toggleIdTokenEncryptionAlgHelp: function() {
+          this.toggle('#idTokenEncryptionAlg-help');
+      },
+        
+      toggleIdTokenEncryptionEncHelp: function() {
+          this.toggle('#idTokenEncryptionEnc-help');
+      },
+        
+      toggleUserInfoSignAlgHelp: function() {
+          this.toggle('#userInfoSignAlg-help');
+      },
+
+      toggleUserInfoEncryptionAlgHelp: function() {
+          this.toggle('#userInfoEncryptionAlg-help');
+      },
+        
+      toggleUserInfoEncryptionEncHelp: function() {
+          this.toggle('#userInfoEncryptionEnc-help');
+      },
+        
+      toggleRequestSignAlgHelp: function() {
+          this.toggle('#requestSignAlg-help');
+      },
+
+      toggleRequestEncryptionAlgHelp: function() {
+          this.toggle('#requestEncryptionAlg-help');
+      },
+        
+      toggleRequestEncryptionEncHelp: function() {
+          this.toggle('#requestEncryptionEnc-help');
+      },
+        
       create: function() {
       },
 

@@ -17,5 +17,6 @@ var authlete_component_client_resources_en = {
   "signAlg": "Signature Algorithm",
   "tosUri": "Terms Of Service Page URL",
   "update": "Update",
-  "userInfoEndpoint": "UserInfo endpoint"
+  "userInfoEndpoint": "UserInfo endpoint",
+  "requestObject": "Request object"
 };

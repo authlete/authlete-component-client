@@ -17,5 +17,6 @@ var authlete_component_client_resources_ja = {
   "signAlg": "署名アルゴリズム",
   "tosUri": "利用規約 URL",
   "update": "更新",
-  "userInfoEndpoint": "UserInfo エンドポイント"
+  "userInfoEndpoint": "UserInfo エンドポイント",
+  "requestObject": "リクエストオブジェクト"
 };
