@@ -19,15 +19,16 @@
     "/tests/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.4.2",
-    "paper-button": "Polymer/paper-button#~0.4.2",
-    "paper-checkbox": "Polymer/paper-checkbox#~0.4.2",
-    "paper-dialog": "Polymer/paper-dialog#~0.4.2",
-    "paper-icon-button": "Polymer/paper-icon-button#~0.4.2",
-    "paper-input": "Polymer/paper-input#~0.4.2",
-    "paper-radio-group": "Polymer/paper-radio-group#~0.4.2",
-    "paper-radio-button": "Polymer/paper-radio-button#~0.4.2",
-    "paper-tabs": "Polymer/"
+    "polymer": "Polymer/polymer#master",
+    "paper-button": "Polymer/paper-button#master",
+    "paper-checkbox": "Polymer/paper-checkbox#master",
+    "paper-dialog": "Polymer/paper-dialog#master",
+    "paper-icon-button": "Polymer/paper-icon-button#master",
+    "paper-input": "Polymer/paper-input#master",
+    "paper-radio-group": "Polymer/paper-radio-group#master",
+    "paper-radio-button": "Polymer/paper-radio-button#master",
+    "paper-tabs": "Polymer/paper-tabs#master",
+    "ajax-form": "~1.4.1"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^0.7.3"
