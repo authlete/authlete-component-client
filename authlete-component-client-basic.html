@@ -1,0 +1,370 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-dialog/paper-dialog-transition.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-input/paper-autogrow-textarea.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../core-overlay/core-overlay.html">
+<link rel="import" href="../core-transition/core-transition.html">
+<link rel="import" href="input/client-name-input.html">
+<link rel="import" href="input/tos-uri-input.html">
+<link rel="import" href="input/client-uri-input.html">
+<link rel="import" href="input/policy-uri-input.html">
+<link rel="import" href="input/logo-uri-input.html">
+<link rel="import" href="input/redirect-uris-input.html">
+<link rel="import" href="input/contacts-input.html">
+<link rel="import" href="input/description-input.html">
+
+<polymer-element name="authlete-component-client-basic" attributes="resources data locale">
+
+  <template>
+
+    <link rel="stylesheet" href="authlete-component-client-basic.css">
+
+    <div id="container">
+
+      <h2>{{resources.clientConfiguration}}</h2>
+
+      <div class="property-group" horizontal layout wrap>
+
+        <template if="{{data.clientId != null}}">
+          <!-- Client ID -->
+          <div class="property">
+            <h4 horizontal layout>
+              <span flex>{{resources.clientId}}</span>
+              <paper-icon-button icon="help" on-click="{{toggleClientIdHelp}}"></paper-icon-button>
+            </h4>
+            <core-overlay id="clientIdHelp" backdrop transition="core-transition-center">
+              <h3>{{resources.clientId}}</h3>
+              <iframe src="help/{{locale}}/client-id.html" frameborder=0></iframe>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientIdHelp}}"></paper-button>
+            </core-overlay>
+            <div class="property-value disabled">
+              <paper-input value="{{data.clientId}}" disabled readonly></paper-input>
+            </div>
+          </div>
+        </template>
+
+        <!-- Client Secret -->
+
+        <!-- Client Name -->
+        <div class="property">
+          <h4 horizontal layout>
+            <span flex>{{resources.clientName}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleClientNameHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="clientNameHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.clientName}}</h3>
+            <iframe src="help/{{locale}}/client-name.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientNameHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <client-name-input id="clientNameInput" value="{{data.clientName}}"></client-name-input>
+          </div>
+        </div>
+
+        <!-- Client Type -->
+        <div class="property">
+          <h4 horizontal layout>
+            <span flex>{{resources.clientType}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleClientTypeHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="clientTypeHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.clientType}}</h3>
+            <iframe src="help/{{locale}}/client-type.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientTypeHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group selected="{{data.clientType}}" valueattr="value">
+              <template repeat="{{def in client_type_definition}}">
+              <paper-radio-button label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- Application Type -->
+        <div class="property">
+          <h4 horizontal layout>
+            <span flex>{{resources.applicationType}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleApplicationTypeHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="applicationTypeHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.applicationType}}</h3>
+            <iframe src="help/{{locale}}/application-type.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleApplicationTypeHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group selected="{{data.applicationType}}" valueattr="value">
+              <template repeat="{{def in application_type_definition}}">
+              <paper-radio-button label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <div class="property-group" horizontal layout wrap>
+        <!-- Response Types -->
+        <div class="property">
+          <h4 horizontal layout>
+            <span flex>{{resources.responseTypes}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleResponseTypesHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="responseTypesHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.responseTypes}}</h3>
+            <iframe src="help/{{locale}}/response-types.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleResponseTypesHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <core-selector id="responseTypesValue" target="{{$.responseTypesOptions}}" multi itemsselector="paper-checkbox" valueattr="value" selected="{{data.responseTypes}}" selectedproperty="checked"></core-selector>
+            <div id="responseTypesOptions">
+              <template repeat="{{def in response_types_definition}}">
+                <paper-checkbox label="{{def.name}}" value="{{def.value}}" noink></paper-checkbox>
+                <br>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grant Types -->
+        <div class="property">
+          <h4 horizontal layout>
+            <span flex>{{resources.grantTypes}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleGrantTypesHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="grantTypesHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.grantTypes}}</h3>
+            <iframe src="help/{{locale}}/grant-types.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleGrantTypesHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <core-selector id="grantTypesValue" target="{{$.grantTypesOptions}}" multi itemsselector="paper-checkbox" valueattr="value" selected="{{data.grantTypes}}" selectedproperty="checked"></core-selector>
+            <div id="grantTypesOptions">
+              <template repeat="{{def in grant_types_definition}}">
+                <paper-checkbox label="{{def.name}}" value="{{def.value}}" noink></paper-checkbox>
+                <br>
+              </template>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <div class="property-group" vertical layout wrap>
+        <!-- Redirect URIs -->
+        <div class="property uris">
+          <h4 horizontal layout>
+            <span flex>{{resources.redirectUris}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleRedirectUrisHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="redirectUrisHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.redirectUris}}</h3>
+            <iframe src="help/{{locale}}/redirect-uris.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRedirectUrisHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <redirect-uris-input id="redirectUrisInput" label="URL1,URL2,..." value="{{data.redirectUris}}"></redirect-uris-input>
+          </div>
+        </div>
+
+        <!-- Contacts -->
+        <div class="property contacts">
+          <h4 horizontal layout>
+            <span flex>{{resources.contacts}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleContactsHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="contactsHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.contacts}}</h3>
+            <iframe src="help/{{locale}}/contacts.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleContactsHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <contacts-input id="contactsInput" label="URL1,URL2,..." value="{{data.contacts}}"></contacts-input>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="property description">
+          <h4 horizontal layout>
+            <span flex>{{resources.description}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleDescriptionHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="descriptionHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.description}}</h3>
+            <iframe src="help/{{locale}}/description.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleDescriptionHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <description-input id="descriptionInput" value="{{data.description}}"></description-input>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <div class="property-group" horizontal layout wrap>
+
+        <!-- Client URI -->
+        <div class="property uri">
+          <h4 horizontal layout>
+            <span flex>{{resources.clientUri}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleClientUriHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="clientUriHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.clientUri}}</h3>
+            <iframe src="help/{{locale}}/client-uri.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientUriHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <client-uri-input id="clientUriInput" label="URL" value="{{data.clientUri}}"></client-uri-input>
+          </div>
+        </div>
+
+        <!-- Logo URI -->
+        <div class="property uri">
+          <h4 horizontal layout>
+            <span flex>{{resources.logoUri}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleLogoUriHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="logoUriHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.logoUri}}</h3>
+            <iframe src="help/{{locale}}/logo-uri.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleLogoUriHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <logo-uri-input id="logoUriInput" label="URL" value="{{data.logoUri}}"></logo-uri-input>
+          </div>
+        </div>
+
+        <!-- Policy URI -->
+        <div class="property uri">
+          <h4 horizontal layout>
+            <span flex>{{resources.policyUri}}</span>
+            <paper-icon-button icon="help" on-click="{{togglePolicyUriHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="policyUriHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.policyUri}}</h3>
+            <iframe src="help/{{locale}}/policy-uri.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{togglePolicyUriHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <policy-uri-input id="policyUriInput" label="URL" value="{{data.policyUri}}"></policy-uri-input>
+          </div>
+        </div>
+
+        <!-- Terms Of Service URI -->
+        <div class="property uri">
+          <h4 horizontal layout>
+            <span flex>{{resources.tosUri}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleTosUriHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="tosUriHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.tosUri}}</h3>
+            <iframe src="help/{{locale}}/tos-uri.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleTosUriHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <tos-uri-input id="tosUriInput" label="URL" value="{{data.tosUri}}"></tos-uri-input>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+    </div> <!-- container -->
+  </template>
+
+  <!-- Authlete Parameter Definition -->
+  <script src="authlete-component-client-default-data.js"></script>
+  <script src="authlete-component-client-resources_en.js"></script>
+  <script src="definition/application-type-def.js"></script>
+  <script src="definition/client-type-def.js"></script>
+  <script src="definition/response-types.js"></script>
+  <script src="definition/grant-types.js"></script>
+
+  <script>
+
+    Polymer({
+      created: function() {
+        this.data = authlete_component_client_default_data;
+        this.resources = authlete_component_client_resources_en;
+        this.application_type_definition = application_type_definition;
+        this.client_type_definition = client_type_definition;
+        this.response_types_definition = response_types_definition;
+        this.grant_types_definition = grant_types_definition;
+      },
+
+      toggleClientIdHelp: function() {
+        this.$.clientIdHelp.toggle();
+      },
+
+      toggleClientNameHelp: function() {
+        this.$.clientNameHelp.toggle();
+      },
+
+      toggleClientTypeHelp: function() {
+        this.$.clientTypeHelp.toggle();
+      },
+
+      toggleApplicationTypeHelp: function() {
+        this.$.applicationTypeHelp.toggle();
+      },
+
+      toggleResponseTypesHelp: function() {
+        this.$.responseTypesHelp.toggle();
+      },
+
+      toggleGrantTypesHelp: function() {
+        this.$.grantTypesHelp.toggle();
+      },
+
+      toggleContactsHelp: function() {
+        this.$.contactsHelp.toggle();
+      },
+
+      toggleRedirectUrisHelp: function() {
+        this.$.redirectUrisHelp.toggle();
+      },
+
+      toggleDescriptionHelp: function() {
+        this.$.descriptionHelp.toggle();
+      },
+
+      toggleClientUriHelp: function() {
+        this.$.clientUriHelp.toggle();
+      },
+
+      toggleLogoUriHelp: function() {
+        this.$.logoUriHelp.toggle();
+      },
+
+      togglePolicyUriHelp: function() {
+        this.$.policyUriHelp.toggle();
+      },
+
+      toggleTosUriHelp: function() {
+        this.$.tosUriHelp.toggle();
+      }
+
+    });
+  </script>
+
+</polymer-element>

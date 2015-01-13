@@ -26,7 +26,8 @@
     "paper-icon-button": "Polymer/paper-icon-button#~0.4.2",
     "paper-input": "Polymer/paper-input#~0.4.2",
     "paper-radio-group": "Polymer/paper-radio-group#~0.4.2",
-    "paper-radio-button": "Polymer/paper-radio-button#~0.4.2"
+    "paper-radio-button": "Polymer/paper-radio-button#~0.4.2",
+    "paper-tabs": "Polymer/"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^0.7.3"

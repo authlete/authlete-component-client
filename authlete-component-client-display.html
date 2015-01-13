@@ -1,0 +1,155 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="authlete-component-client-basic.html">
+<link rel="import" href="authlete-component-client-advanced.html">
+<link rel="import" href="../ajax-form/ajax-form.html">
+
+<polymer-element name="authlete-component-client-display" attributes="mode resources config data locale">
+
+  <template>
+    <link rel="stylesheet" href="authlete-component-client-display.css">
+
+    <!--  Display  -->
+    <template if="{{ mode === 'basic' }}">
+      <authlete-component-client-basic id="basic" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></authlete-component-client-basic>
+    </template>
+    <template if="{{ mode === 'advanced' }}">
+      <authlete-component-client-advanced id="advanced" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></authlete-component-client-advanced>
+    </template>
+
+    <!--  Button  -->
+    <template if="{{ data.clientId != null }}">
+      <paper-button class="submit" on-click="{{update}}">{{resources.update}}</paper-button>
+    </template>
+    <template if="{{ data.clientId == null }}">
+      <paper-button class="submit" on-click="{{create}}">{{resources.create}}</paper-button>
+    </template>
+
+    <!-- Hidden Form -->
+    <form id="form" is="ajax-form" action="my/form/handler" method="post">
+      <div id="formData"></div>
+    </form>
+  </template>
+
+  <script src="authlete-component-client-configuration.js"></script>
+  <script src="authlete-component-client-default-data-dummy.js"></script>
+  <!--<script src="input/validator.js"></script>-->
+
+  <script>
+    Polymer({
+      created: function() {
+        this.mode      = "basic";
+        this.config    = config;
+        this.resources = authlete_component_client_resources_en;
+        this.data      = authlete_component_client_default_data;
+      },
+
+      ready: function() {
+        // Set the attributes to the form.
+        this.setFormAttributes();
+
+        // Set the event listeners to the form.
+        this.setFormEventListeners();
+      },
+
+      setFormAttributes: function () {
+        this.$.form.setAttribute("is", "ajax-form");
+        this.$.form.setAttribute("method", "post");
+        this.$.form.setAttribute("action", this.config.clientCreateUri);
+      },
+
+      setFormEventListeners: function () {
+        this.$.form.addEventListener('invalid', function(e)
+        {
+          alert("Invalid.");
+        });
+
+        this.$.form.addEventListener('submitting', function(e)
+        {
+          alert("Submitting...");
+        });
+
+        this.$.form.addEventListener('submitted', function(e)
+        {
+          alert("Submitted.");
+        });
+      },
+
+      create: function() {
+        // Validate the data.
+        try
+        {
+          this.validate();
+        }
+        catch (e)
+        {
+          alert(e);
+
+          return;
+        }
+
+        // Get non empty data.
+        var nonEmptyData = this.extractNonEmptyData();
+
+        // Send the data.
+        this.sendData(nonEmptyData);
+      },
+
+      update: function() {
+      },
+
+      validate: function() {
+        validate(this.data);
+      },
+
+      extractNonEmptyData: function() {
+        var nonEmptyData = {};
+
+        for (var key in this.data)
+        {
+          if (isEmpty(this.data[key]) === false)
+          {
+            nonEmptyData[key] = this.data[key];
+          }
+        }
+
+        return nonEmptyData;
+      },
+
+      sendData: function(data) {
+        // Remove the old data associated with the form.
+        this.removeOldFormData();
+
+        // Set the data to the form.
+        this.setFormData(data);
+
+        // Submit the form.
+        this.$.form.submit();
+      },
+
+      removeOldFormData: function() {
+        while(this.$.formData.firstChild)
+        {
+          this.$.formData.removeChild(this.$.formData.firstChild);
+        }
+      },
+
+      setFormData: function (data) {
+        for (var key in data)
+        {
+          if (data.hasOwnProperty(key))
+          {
+            var hiddenField = document.createElement("input");
+
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", data[key]);
+
+            this.$.formData.appendChild(hiddenField);
+          }
+        }
+      }
+
+    });
+  </script>
+
+</polymer-element>

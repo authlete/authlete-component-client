@@ -1,0 +1,22 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="validatable-paper-input.html">
+
+<polymer-element name="sector-identifier-uri-input" extends="validatable-paper-input">
+
+<template>
+  <shadow></shadow>
+</template>
+
+<script>
+  (function() {
+    Polymer({
+
+      validate: function() {
+        validateSectorIdentifierUri(this.value);
+      }
+
+    });
+  })();
+</script>
+
+</polymer-element>

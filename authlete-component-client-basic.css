@@ -1,0 +1,180 @@
+:host {
+  display: block;
+  padding: 10px;
+  background-color: #fcfcfc;
+  color: lightslategray;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Segoe UI', 'Arial', sans-serif;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+  color: skyblue;
+}
+
+h3 {
+  color: steelblue;
+}
+
+h4 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.property {
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+
+.contacts, .uris, .description {
+  min-width: 350px;
+  max-width: 600px;
+}
+
+.uri {
+  min-width: 350px;
+  max-width: 500px;
+}
+
+.property.selection {
+  max-width: 350px;
+}
+
+.property-value {
+  background-color: white;
+  border: 1px solid steelblue;
+  border-radius: 6px;
+/*  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4) inset;*/
+  padding: 5px 10px;
+}
+
+.property-value.disabled {
+  background-color: #F0F0F0;
+}
+
+/*
+ *  papaer-checkbox
+ */
+
+paper-checkbox {
+  padding: 15px 10px 15px 0;
+  border-color: steelblue;
+}
+
+paper-checkbox::shadow #ink[checked] {
+  color: steelblue;
+}
+
+paper-checkbox::shadow #checkbox.checked {
+  border-color: steelblue;
+}
+
+paper-checkbox::shadow #ink {
+  color: steelblue;
+}
+
+paper-checkbox::shadow #checkbox {
+  border-color: steelblue;
+}
+
+/*
+ * paper-dialog
+ */
+
+paper-dialog {
+  border: 1px solid steelblue;
+}
+
+paper-dialog iframe {
+  border: 0;
+  height: 300px;
+}
+
+/*
+ * paper-icon-button
+ */
+
+paper-icon-button {
+  padding: 0;
+  vertical-align: middle;
+}
+
+/*
+ * paper-input
+ */
+
+/*
+paper-input,
+authlete-component-paper-uri-input,
+authlete-component-paper-uris-input,
+authlete-component-paper-email-addresses-input {
+  width: 100%;
+}
+*/
+
+/*
+ * paper-autogrow-textarea
+ */
+
+/*
+paper-autogrow-textarea {
+  width: 100%;
+}
+*/
+
+/*
+ * textarea
+ */
+
+/*
+textarea {
+  color: inherit;
+  font: inherit;
+}
+*/
+
+/*
+ * paper-radio-button
+ */
+
+paper-radio-button::shadow #onRadio {
+  background-color: steelblue;
+}
+
+paper-radio-button::shadow #offRadio {
+  border-color: steelblue;
+}
+
+paper-radio-button::shadow #ink {
+  color: steelblue;
+}
+
+/*
+ * core-overlay
+ */
+
+core-overlay {
+  background: rgba(255, 255, 255, 0.63);
+  padding:30px 42px;
+  outline: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/*
+ * iframe
+ */
+
+iframe {
+  width: 400px;
+  height: 400px;
+  padding-bottom: 1em;
+}
+
+/*
+ * Help Close Button
+ */
+
+.help-close-button {
+  color: black;
+  background: white;
+}

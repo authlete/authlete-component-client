@@ -1,0 +1,761 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-dialog/paper-dialog-transition.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../core-media-query/core-media-query.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="tagged-values/authlete-component-multiple-tagged-values.html">
+<link rel="import" href="text-values/authlete-component-multiple-text-values.html">
+
+<polymer-element name="authlete-component-client" attributes="data locale">
+
+  <template>
+
+    <link rel="stylesheet" href="authlete-component-client.css">
+
+    <paper-tabs class="tabs" noink>
+      <paper-tab>Basic</paper-tab>
+      <paper-tab>Advanced</paper-tab>
+    </paper-tabs>
+
+    <div id="container">
+
+    <h2>{{resources.clientConfiguration}}</h2>
+
+    <div class="property-group" horizontal layout wrap>
+
+      <div class="property-sub-group" vertical layout wrap>
+        <template if="{{data.clientId != null}}">
+
+          <!-- Client ID -->
+          <div class="property text">
+            <h4 horizontal layout>
+              <span flex>{{resources.clientId}}</span>
+              <paper-icon-button icon="help" on-click="{{toggleClientIdHelp}}"></paper-icon-button>
+            </h4>
+<!--
+            <paper-dialog id="clientIdHelp">
+              <h3>{{resources.clientId}}</h3>
+              <iframe src="help/{{locale}}/client-id.html"></iframe>
+              <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+            </paper-dialog>
+-->
+            <div class="property-value disabled">
+              <paper-input value="{{data.clientId}}" disabled readonly></paper-input>
+            </div>
+          </div>
+        </template>
+
+        <!-- Client Secret -->
+
+        <!-- Client Name -->
+        <div class="property text">
+          <h4 horizontal layout>
+            <span flex>{{resources.clientName}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleClientNameHelp}}"></paper-icon-button>
+          </h4>
+<!--
+          <paper-dialog id="clientNameHelp">
+            <h3>{{resources.clientName}}</h3>
+            <iframe src="help/{{locale}}/client-name-input.html"></iframe>
+            <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+          </paper-dialog>
+-->
+          <div class="property-value">
+            <paper-input required value="{{data.clientName}}"></paper-input>
+          </div>
+        </div>
+
+        <!-- Client Names -->
+        <div class="property text">
+          <h4 horizontal layout>
+            <span flex>{{resources.clientNames}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleClientNamesHelp}}"></paper-icon-button>
+          </h4>
+<!--
+          <paper-dialog id="clientNamesHelp">
+            <h3>{{resources.clientNames}}</h3>
+            <iframe src="help/{{locale}}/client-uri-input.html"></iframe>
+            <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+          </paper-dialog>
+-->
+          <div class="property-value">
+            <authlete-component-multiple-tagged-values id="clientNamesValue" taggedValues="{{data.clientNames}}"></authlete-component-multiple-tagged-values>
+          </div>
+        </div>
+
+        <!-- Contacts -->
+        <div class="property text">
+          <h4 horizontal layout>
+            <span flex>{{resources.contacts}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleContactsHelp}}"></paper-icon-button>
+          </h4>
+<!--
+          <paper-dialog id="contactsHelp">
+            <h3>{{resources.contacts}}</h3>
+            <iframe src="help/{{locale}}/contacts.html"></iframe>
+            <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+          </paper-dialog>
+-->
+          <div class="property-value">
+            <authlete-component-multiple-text-values id="contacts" textValues="{{data.contacts}}"></authlete-component-multiple-text-values>
+          </div>
+        </div>
+      </div> <!-- property-sub-group -->
+
+      <!-- Client Type -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.clientType}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleClientTypeHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="clientTypeHelp">
+          <h3>{{resources.clientType}}</h3>
+          <iframe src="help/{{locale}}/client-type.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <paper-radio-group selected="{{data.clientType}}">
+            <paper-radio-button name="PUBLIC" label="public"></paper-radio-button>
+            <paper-radio-button name="CONFIDENTIAL" label="confidential"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- Application Type -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.applicationType}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleApplicationTypeHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="applicationTypeHelp">
+          <h3>{{resources.applicationType}}</h3>
+          <iframe src="help/{{locale}}/application-type.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <paper-radio-group selected="{{data.applicationType}}">
+            <paper-radio-button name="WEB" label="web" toggles="true"></paper-radio-button>
+            <paper-radio-button name="NATIVE" label="native" toggles="true"></paper-radio-button>
+          </paper-radio-group>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <div class="property-group" horizontal layout wrap>
+
+      <!-- Response Types -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.responseTypes}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleResponseTypesHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="responseTypesHelp">
+          <h3>{{resources.responseTypes}}</h3>
+          <iframe src="help/{{locale}}/response-types.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+        <core-selector id="responseTypesValue" target="{{$.responseTypesOptions}}" multi itemsselector="paper-checkbox" valueattr="value" selected="{{data.responseTypes}}" selectedproperty="checked"></core-selector>
+          <div id="responseTypesOptions">
+            <template repeat="{{def in response_types_definition}}">
+              <paper-checkbox label="{{def.name}}" value="{{def.value}}"></paper-checkbox>
+              <br>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grant Types -->
+      <div class="property">
+        <h4 horizontal layout>
+          <span flex>{{resources.grantTypes}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleGrantTypesHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="grantTypesHelp">
+          <h3>{{resources.grantTypes}}</h3>
+          <iframe src="help/{{locale}}/grant-types.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <core-selector id="grantTypesValue" target="{{$.grantTypesOptions}}" multi itemsselector="paper-checkbox" valueattr="value" selected="{{data.grantTypes}}" selectedproperty="checked"></core-selector>
+          <div id="grantTypesOptions">
+            <template repeat="{{def in grant_types_definition}}">
+              <paper-checkbox label="{{def.name}}" value="{{def.value}}"></paper-checkbox>
+              <br>
+            </template>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <div class="property-group" vertical layout>
+
+      <!-- Redirect URIs -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.redirectUris}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleRedirectUrisHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="redirectUrisHelp">
+          <h3>{{resources.redirectUris}}</h3>
+          <iframe src="help/{{locale}}/redirect-uris.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <authlete-component-multiple-text-values textValues="{{data.redirectUris}}"></authlete-component-multiple-text-values>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <div class="property-group" vertical layout wrap>
+
+      <!-- Client URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.clientUri}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleClientUriHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="clientUriHelp">
+          <h3>{{resources.clientUri}}</h3>
+          <iframe src="help/{{locale}}/client-uri-input.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <paper-input id="clientUriValue" value="{{data.clientUri}}"></paper-input>
+        </div>
+      </div>
+
+      <!-- Client URIs -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.clientUris}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleClientUrisHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="clientUrisHelp">
+          <h3>{{resources.clientUris}}</h3>
+          <iframe src="help/{{locale}}/client-uri-input.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <authlete-component-multiple-tagged-values id="clientUrisValue" taggedValues="{{data.clientUris}}"></authlete-component-multiple-tagged-values>
+        </div>
+      </div>
+
+      <!-- Logo URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.logoUri}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleLogoUriHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="logoUriHelp">
+          <h3>{{resources.logoUri}}</h3>
+          <iframe src="help/{{locale}}/logo-uri.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <paper-input id="logoUriValue" value="{{data.logoUri}}"></paper-input>
+        </div>
+      </div>
+
+      <!-- Logo URIs -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.logoUris}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleLogoUrisHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="logoUrisHelp">
+          <h3>{{resources.logoUris}}</h3>
+          <iframe src="help/{{locale}}/client-uri-input.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <authlete-component-multiple-tagged-values id="logoUrisValue" taggedValues="{{data.clientUris}}"></authlete-component-multiple-tagged-values>
+        </div>
+      </div>
+
+      <!-- Policy URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.policyUri}}</span>
+          <paper-icon-button icon="help" on-click="{{togglePolicyUriHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="policyUriHelp">
+          <h3>{{resources.policyUri}}</h3>
+          <iframe src="help/{{locale}}/policy-uri.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <paper-input id="policyUriValue" value="{{data.policyUri}}"></paper-input>
+        </div>
+      </div>
+
+      <!-- Policy URIs -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.policyUris}}</span>
+          <paper-icon-button icon="help" on-click="{{togglePolicyUrisHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="policyUrisHelp">
+          <h3>{{resources.policyUris}}</h3>
+          <iframe src="help/{{locale}}/client-uri-input.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <authlete-component-multiple-tagged-values id="policyUrisValue" taggedValues="{{data.policyUris}}"></authlete-component-multiple-tagged-values>
+        </div>
+      </div>
+
+      <!-- Terms Of Service URI -->
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.tosUri}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleTosUriHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="tosUriHelp">
+          <h3>{{resources.tosUri}}</h3>
+          <iframe src="help/{{locale}}/tos-uri.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <paper-input value="{{data.tosUri}}"></paper-input>
+        </div>
+      </div>
+
+      <div class="property uri">
+        <h4 horizontal layout>
+          <span flex>{{resources.tosUris}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleTosUrisHelp}}"></paper-icon-button>
+        </h4>
+<!--
+        <paper-dialog id="tosUrisHelp">
+          <h3>{{resources.tosUris}}</h3>
+          <iframe src="help/{{locale}}/client-uri-input.html"></iframe>
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+-->
+        <div class="property-value">
+          <authlete-component-multiple-tagged-values id="tosUrisValue" taggedValues="{{data.tosUris}}"></authlete-component-multiple-tagged-values>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <h3>{{resources.idToken}}</h3>
+
+    <div class="property-group" horizontal layout wrap>
+
+      <!-- Id Token Sign Algorithm -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.signAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleIdTokenSignAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="idTokenSignAlgHelp">
+          <h3>{{resources.signAlg}}</h3>
+<!--          <iframe src="help/{{locale}}/id-token-sign-alg.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="idTokenSignAlgValue" selected="{{data.idTokenSignAlg}}" valueattr="value">
+            <template repeat="{{def in jws_alg_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- Id Token Encryption Algorithm (alg) -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleIdTokenEncryptionAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="idTokenEncryptionAlgHelp">
+          <h3>{{resources.encryptionAlg}}</h3>
+<!--          <iframe src="help/{{locale}}/id-token-encryption-alg.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="idTokenEncryptionAlgValue" selected="{{data.idTokenEncryptionAlg}}" valueattr="value">
+            <template repeat="{{def in jwe_alg_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- Id Token Encryption Algorithm (enc) -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionEnc}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleIdTokenEncryptionEncHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="idTokenEncryptionEncHelp">
+          <h3>{{resources.encryptionEnc}}</h3>
+<!--          <iframe src="help/{{locale}}/id-token-encryption-enc.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="idTokenEncryptionEncValue" selected="{{data.idTokenEncryptionEnc}}" valueattr="value">
+            <template repeat="{{def in jwe_enc_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <h3>{{resources.userInfoEndpoint}}</h3>
+
+    <div class="property-group" horizontal layout wrap>
+
+      <!-- User Info Sign Algorithm -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.signAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleUserInfoSignAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="userInfoSignAlgHelp">
+          <h3>{{resources.signAlg}}</h3>
+<!--          <iframe src="help/{{locale}}/user-info-sign-alg.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="userInfoSignAlgValue" selected="{{data.userInfoSignAlg}}" valueattr="value">
+            <template repeat="{{def in jws_alg_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- User Info Encryption Algorithm (alg) -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleUserInfoEncryptionAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="userInfoEncryptionAlgHelp">
+          <h3>{{resources.encryptionAlg}}</h3>
+<!--          <iframe src="help/{{locale}}/user-info-encryption-alg.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="userInfoEncryptionAlgValue" selected="{{data.userInfoEncryptionAlg}}" valueattr="value">
+            <template repeat="{{def in jwe_alg_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- User Info Encryption Algorithm (enc) -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionEnc}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleUserInfoEncryptionEncHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="userInfoEncryptionEncHelp">
+          <h3>{{resources.encryptionEnc}}</h3>
+<!--          <iframe src="help/{{locale}}/user-info-encryption-enc.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="userInfoEncryptionEncValue" selected="{{data.userInfoEncryptionEnc}}" valueattr="value">
+            <template repeat="{{def in jwe_enc_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <h3>{{resources.requestObject}}</h3>
+
+    <div class="property-group" horizontal layout wrap>
+
+      <!-- Request Sign Algorithm -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.signAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleRequestSignAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="requestSignAlgHelp">
+          <h3>{{resources.signAlg}}</h3>
+<!--          <iframe src="help/{{locale}}/request-sign-alg.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="requestSignAlgValue" selected="{{data.requestSignAlg}}" valueattr="value">
+            <template repeat="{{def in jws_alg_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- Request Encryption Algorithm (alg) -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionAlg}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleRequestEncryptionAlgHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="requestEncryptionAlgHelp">
+          <h3>{{resources.encryptionAlg}}</h3>
+<!--          <iframe src="help/{{locale}}/request-encryption-alg.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="requestEncryptionAlgValue" selected="{{data.requestEncryptionAlg}}" valueattr="value">
+            <template repeat="{{def in jwe_alg_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- Request Encryption Algorithm (enc) -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.encryptionEnc}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleRequestEncryptionEncHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="requestEncryptionEncHelp">
+          <h3>{{resources.encryptionEnc}}</h3>
+<!--          <iframe src="help/{{locale}}/request-encryption-enc.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="requestEncryptionEncValue" selected="{{data.requestEncryptionEnc}}" valueattr="value">
+            <template repeat="{{def in jwe_enc_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+      <!-- Token Auth Method -->
+      <div class="property selection">
+        <h4 horizontal layout>
+          <span flex>{{resources.tokenAuthMethod}}</span>
+          <paper-icon-button icon="help" on-click="{{toggleTokenAuthMethodHelp}}"></paper-icon-button>
+        </h4>
+        <paper-dialog id="tokenAuthMethodHelp">
+          <h3>{{resources.tokenAuthMethod}}</h3>
+<!--          <iframe src="help/{{locale}}/token-auth-method.html"></iframe>-->
+          <paper-button label="{{resources.close}}" affirmative autofocus></paper-button>
+        </paper-dialog>
+        <div class="property-value">
+          <paper-radio-group id="tokenAuthMethodValue" selected="{{data.tokenAuthMethod}}" valueattr="value">
+            <template repeat="{{def in client_auth_method_definition}}">
+              <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}"></paper-radio-button>
+            </template>
+          </paper-radio-group>
+        </div>
+      </div>
+
+    </div> <!-- property-group -->
+
+    <template if="{{data.clientId != null}}">
+      <paper-button class="submit" on-click="update">{{resources.update}}</paper-button>
+    </template>
+    <template if="{{data.clientId == null}}">
+      <paper-button class="submit" on-click="{{create}}">{{resources.create}}</paper-button>
+    </template>
+    </div> <!-- container -->
+  </template>
+
+  <!-- Authlete Parameter Definition -->
+  <script src="authlete-component-client-default-data.js"></script>
+  <script src="authlete-component-client-resources_en.js"></script>
+  <script src="authlete-component-client-resources_ja.js"></script>
+  <script src="definition/response-types.js"></script>
+  <script src="definition/grant-types.js"></script>
+  <script src="definition/jws-alg.js"></script>
+  <script src="definition/jwe-alg.js"></script>
+  <script src="definition/jwe-enc.js"></script>
+  <script src="definition/client-auth-method.js"></script>
+
+  <script>
+    function contains(array, value) {
+      return (array !== undefined) && (array !== null) && (array.indexOf(value) !== -1);
+    }
+
+    Polymer({
+      created: function() {
+        this.data = authlete_component_client_default_data();
+        this.response_types_definition = response_types_definition;
+        this.grant_types_definition = grant_types_definition;
+        this.jws_alg_definition = jws_alg_definition;
+        this.jwe_alg_definition = jwe_alg_definition;
+        this.jwe_enc_definition = jwe_enc_definition;
+        this.client_auth_method_definition = client_auth_method_definition;
+      },
+
+      ready: function() {
+        switch (this.locale) {
+          case "ja":
+            this.resources = authlete_component_client_resources_ja;
+            break;
+
+          default:
+            this.locale = "en";
+            this.resources = authlete_component_client_resources_en;
+            break;
+        }
+      },
+
+      responseTypesContains: function(data, value) {
+        return (data !== undefined) && (data !== null) && contains(data.responseTypes, value);
+      },
+
+      grantTypesContains: function(data, value) {
+        return (data !== undefined) && (data !== null) && contains(data.grantTypes, value);
+      },
+
+      toggle: function(selector) {
+        this.$.container.querySelector(selector).toggle();
+      },
+
+      toggleClientIdHelp: function() {
+        this.toggle('#clientIdHelp');
+      },
+
+      toggleClientNameHelp: function() {
+        this.toggle('#clientNameHelp');
+      },
+
+      toggleClientTypeHelp: function() {
+        this.toggle('#clientTypeHelp');
+      },
+
+      toggleApplicationTypeHelp: function() {
+        this.toggle('#applicationTypeHelp');
+      },
+
+      toggleResponseTypesHelp: function() {
+        this.toggle('#responseTypesHelp');
+      },
+
+      toggleGrantTypesHelp: function() {
+        this.toggle('#grantTypesHelp');
+      },
+
+      toggleClientUriHelp: function() {
+        this.toggle('#clientUriHelp');
+      },
+
+      toggleClientUrisHelp: function() {
+        this.toggle('#clientUrisHelp');
+      },
+
+      toggleLogoUriHelp: function() {
+        this.toggle('#logoUriHelp');
+      },
+
+      togglePolicyUriHelp: function() {
+        this.toggle('#policyUriHelp');
+      },
+
+      toggleTosUriHelp: function() {
+        this.toggle('#tosUriHelp');
+      },
+
+      toggleIdTokenSignAlgHelp: function() {
+          this.toggle('#idTokenSignAlgHelp');
+      },
+
+      toggleIdTokenEncryptionAlgHelp: function() {
+          this.toggle('#idTokenEncryptionAlgHelp');
+      },
+
+      toggleIdTokenEncryptionEncHelp: function() {
+          this.toggle('#idTokenEncryptionEncHelp');
+      },
+
+      toggleUserInfoSignAlgHelp: function() {
+          this.toggle('#userInfoSignAlgHelp');
+      },
+
+      toggleUserInfoEncryptionAlgHelp: function() {
+          this.toggle('#userInfoEncryptionAlgHelp');
+      },
+
+      toggleUserInfoEncryptionEncHelp: function() {
+          this.toggle('#userInfoEncryptionEncHelp');
+      },
+
+      toggleRequestSignAlgHelp: function() {
+          this.toggle('#requestSignAlgHelp');
+      },
+
+      toggleRequestEncryptionAlgHelp: function() {
+          this.toggle('#requestEncryptionAlgHelp');
+      },
+
+      toggleRequestEncryptionEncHelp: function() {
+          this.toggle('#requestEncryptionEncHelp');
+      },
+
+      create: function() {
+
+//          var xxx = this.$.responseTypesValue.selected;
+//          var yyy = this.$.grantTypesValue.defaultExcludedLocalNames;
+//          var zzz = this.$.idTokenSignAlgValue.defaultExcludedLocalNames;
+//          var aaa = this.$.logoUriValue.value;
+//
+//          console.log(xxx);
+//          console.log(yyy);
+//          console.log(zzz);
+//          console.log(aaa);
+//
+//          var d = this.$.test.getValue();
+//          console.log(d);
+//          var json = JSON.stringify(d);
+//          console.log(json);
+          console.log(this.$.clientNamesValue.getValue());
+          console.log(this.$.contacts.getValue());
+      },
+
+      update: function() {
+      }
+    });
+  </script>
+
+</polymer-element>

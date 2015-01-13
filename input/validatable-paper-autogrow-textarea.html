@@ -1,0 +1,58 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-input/paper-autogrow-textarea.html">
+<link rel="import" href="../../paper-input/paper-input-decorator.html">
+<link rel="import" href="base-validatable-input.html">
+
+<polymer-element name="validatable-paper-autogrow-textarea" attributes="rows" extends="base-validatable-input">
+
+<template>
+
+  <style>
+    :host {
+      display: inline-block;
+      width: 100%;
+    }
+  </style>
+
+  <paper-input-decorator id="decorator" label="{{label}}" value="{{value}}">
+    <paper-autogrow-textarea rows="{{rows}}">
+      <textarea id="input" value="{{value}}"></textarea>
+    </paper-autogrow-textarea>
+  </paper-input-decorator>
+
+</template>
+
+<script>
+
+  Polymer({
+    /**
+     * The initial number of rows.
+     *
+     * @attribute rows
+     * @type number
+     * @default 1
+     */
+    rows: 1,
+
+    ready: function() {
+      // Set an listener for the event 'input' so that as users input, it gets called.
+      this.addEventListener('input', this.update);
+
+      // When this element is ready, update the UI (Perform the validation).
+      this.update();
+    },
+
+    updateOnValid: function() {
+      this.$.decorator.isInvalid = false;
+    },
+
+    updateOnInvalid: function(exception) {
+      this.$.decorator.error = exception;
+      this.$.decorator.isInvalid = true;
+    }
+
+  });
+
+</script>
+
+</polymer-element>

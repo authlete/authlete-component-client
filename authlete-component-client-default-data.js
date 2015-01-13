@@ -1,9 +1,6 @@
-function authlete_component_client_default_data() {
-  return {
-    "clientType" : "PUBLIC",
-    "applicationType": "WEB",
+var authlete_component_client_default_data = {
+    "clientType" : "CONFIDENTIAL",
     "responseTypes" : [ "CODE" ],
     "grantTypes": [ "AUTHORIZATION_CODE" ],
-    "idTokenSignAlg": "RS256"
-  }
-}
+    "defaultMaxAge": 300
+};

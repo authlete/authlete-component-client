@@ -6,7 +6,7 @@
   <title>authlete-component-client Demo</title>
 
   <script src="../platform/platform.js"></script>
-  <link rel="import" href="authlete-component-client.html">
+  <link rel="import" href="authlete-component-client2.html">
 
 </head>
 <body unresolved>
@@ -14,11 +14,13 @@
   <h2><code>&lt;authlete-component-client&gt;</code> examples</h2>
 
   <h4>#1</h4>
-  <authlete-component-client id="No1"></authlete-component-client>
+  <authlete-component-client id="No1" locale="en"></authlete-component-client>
+<!--
 
   <h4>#2</h4>
   <authlete-component-client id="No2" locale="ja"></authlete-component-client>
 
+-->
   <script>
     var json = JSON.stringify({
       "clientId": 15873648196,
@@ -33,7 +35,7 @@
       "idTokenSignAlg": "HS384"
     });
 
-    document.querySelector('#No2').setAttribute('data', json);
+    // document.querySelector('#No2').setAttribute('data', json);
   </script>
 </body>
 </html>

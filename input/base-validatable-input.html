@@ -1,0 +1,84 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<polymer-element name="base-validatable-input" attributes="value label">
+
+  <script src="../validator.js"></script>
+
+  <script>
+
+    Polymer({
+      /**
+       * The current value for this element.
+       *
+       * @attribute value
+       * @type string
+       * @default ''
+       */
+      value: '',
+
+      /**
+       * The label for this element.
+       *
+       * @attribute label
+       * @type string
+       * @default ''
+       */
+      label: '',
+
+      /**
+       * Update the UI with the validation.
+       */
+      update: function() {
+        try
+        {
+          // Validate the input value.
+          this.validate();
+        }
+        catch (e)
+        {
+          // When catching AuthleteException, Update the UI with it.
+          if (e instanceof AuthleteException)
+          {
+            // Invalid. Show alert on the UI.
+            this.updateOnInvalid(e);
+
+            return;
+          }
+
+          // Throw the other exceptions.
+          throw e;
+        }
+
+        // Valid. Change the UI to the valid state.
+        this.updateOnValid();
+      },
+
+      /**
+       * Override this method in the subclasses.
+       *
+       * Validate the input value.
+       */
+      validate: function() {
+      },
+
+      /**
+       * Override this method in the subclasses.
+       *
+       * Update the UI on valid.
+       */
+      updateOnValid: function() {
+      },
+
+      /**
+       * Override this method in the sub classes.
+       *
+       * Update the UI on invalid.
+       */
+      updateOnInvalid: function(exception) {
+      }
+
+    });
+
+  </script>
+
+</polymer-element>

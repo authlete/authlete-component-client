@@ -1,0 +1,24 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="validatable-paper-autogrow-textarea.html">
+
+<polymer-element name="description-input" extends="validatable-paper-autogrow-textarea">
+
+<template>
+  <shadow></shadow>
+</template>
+
+<script>
+
+  (function() {
+    Polymer({
+
+      validate: function() {
+        validateDescription(this.value);
+      }
+
+    });
+  })();
+
+</script>
+
+</polymer-element>

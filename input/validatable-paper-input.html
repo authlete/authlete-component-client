@@ -1,0 +1,47 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../core-input/core-input.html">
+<link rel="import" href="../../paper-input/paper-input-decorator.html">
+<link rel="import" href="base-validatable-input.html">
+
+<polymer-element name="validatable-paper-input" extends="base-validatable-input">
+
+<template>
+
+  <style>
+    :host {
+      display: inline-block;
+      width: 100%;
+    }
+  </style>
+
+  <paper-input-decorator id="decorator" label="{{label}}" value="{{value}}">
+    <input id="input" is="core-input" value="{{value}}">
+  </paper-input-decorator>
+
+</template>
+
+<script>
+
+  Polymer({
+    ready: function() {
+      // Set an listener for the event 'input' so that as users input, it gets called.
+      this.addEventListener('input', this.update);
+
+      // When this element is ready, update the UI (Perform the validation).
+      this.update();
+    },
+
+    updateOnValid: function() {
+      this.$.decorator.isInvalid = false;
+    },
+
+    updateOnInvalid: function(exception) {
+      this.$.decorator.error = exception;
+      this.$.decorator.isInvalid = true;
+    }
+
+  });
+
+</script>
+
+</polymer-element>

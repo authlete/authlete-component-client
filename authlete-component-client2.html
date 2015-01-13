@@ -1,0 +1,96 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="authlete-component-client-display.html">
+
+<polymer-element name="authlete-component-client" attributes="locale data">
+
+  <template>
+    <link rel="stylesheet" href="authlete-component-client.css">
+
+    <paper-tabs id="tabs" class="tabs" selected="basic" noink nobar>
+      <paper-tab id="tabBasic" name="basic">Basic</paper-tab>
+      <paper-tab id="tabAdvanced" name="advanced">Advanced</paper-tab>
+    </paper-tabs>
+
+    <authlete-component-client-display id="display" mode="basic" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></authlete-component-client-display>
+  </template>
+
+  <!-- Authlete Parameter Definition -->
+  <script src="authlete-component-client-resources_en.js"></script>
+  <script src="authlete-component-client-resources_ja.js"></script>
+  <script src="authlete-component-client-default-data.js"></script>
+
+  <script>
+    Polymer({
+      /**
+       * The language-related information for displaying the UI.
+       */
+      locale: "en",
+
+      /**
+       * The resource information for displaying the UI.
+       */
+      resources: authlete_component_client_resources_en,
+
+      /**
+       * The data representing the client information.
+       */
+      data: authlete_component_client_default_data,
+
+      ready: function() {
+        this.setUpResources(this);
+        this.setUpDisplayMode(this);
+      },
+
+      setUpResources: function(root) {
+        // Set the resource depending on the given locale information.
+        switch (root.locale) {
+          case "ja":
+            root.resources = authlete_component_client_resources_ja;
+            break;
+
+          default:
+            root.locale = "en";
+            root.resources = authlete_component_client_resources_en;
+            break;
+        }
+      },
+
+      setUpDisplayMode: function(root) {
+        // If the 'tabBasic' gets clicked,
+        // change the display mode to the "basic" mode.
+        root.$.tabBasic.addEventListener("click", function() {
+          // Change the mode.
+          root.changeMode(root, "basic");
+        });
+
+        // If the 'tabAdvanced' gets clicked,
+        // change the display mode to the "advanced" mode.
+        root.$.tabAdvanced.addEventListener("click", function() {
+          // Change the mode.
+          root.changeMode(root, "advanced");
+        });
+      },
+
+      /**
+       * Change the display mode,
+       * if the current mode is not the target one.
+       */
+      changeMode: function(root, targetMode) {
+        // If the current display mode is already the target one,
+        // do nothing.
+        if (root.$.display.mode == targetMode)
+        {
+          return;
+        }
+
+        console.log(root.data);
+
+        // Change the mode.
+        root.$.display.mode = targetMode;
+      }
+    });
+  </script>
+
+</polymer-element>

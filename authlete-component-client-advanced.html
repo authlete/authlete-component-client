@@ -1,0 +1,542 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-dialog/paper-dialog-transition.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../paper-tabs/paper-tab.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../paper-input/paper-input-decorator.html">
+<link rel="import" href="input/sector-identifier-uri-input.html">
+<link rel="import" href="input/login-uri-input.html">
+<link rel="import" href="input/request-uris-input.html">
+<link rel="import" href="input/default-acrs-input.html">
+<link rel="import" href="input/default-max-age-input.html">
+<link rel="import" href="input/jwks-input.html">
+<link rel="import" href="input/jwks-uri-input.html">
+
+<polymer-element name="authlete-component-client-advanced" attributes="resources data locale">
+
+  <template>
+
+    <link rel="stylesheet" href="authlete-component-client-advanced.css">
+
+    <div id="container">
+
+      <h2>{{resources.clientConfiguration}}</h2>
+
+      <div class="property-group" vertical layout wrap>
+        <!-- Subject Type -->
+        <div class="property type">
+          <h4 horizontal layout>
+            <span flex>{{resources.subjectType}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleSubjectTypeHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="subjectTypeHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.subjectType}}</h3>
+            <iframe src="help/{{locale}}/subject-type.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleSubjectTypeHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group selected="{{data.subjectType}}" valueattr="value">
+              <template repeat="{{def in subject_type_definition}}">
+                <paper-radio-button label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- Sector Identifier -->
+        <div class="property uri">
+          <h4 horizontal layout>
+            <span flex>{{resources.sectorIdentifierUri}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleSectorIdentifierUriHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="sectorIdentifierHelp" backdrop transition="core-transition">
+            <h3>{{resources.sectorIdentifierUri}}</h3>
+            <iframe src="help/{{locale}}/sector-identifier-uri.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleSectorIdentifierUriHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <sector-identifier-uri-input id="sectorIdentifierUriInput" label="URL" value="{{data.sectorIdentifierUri}}"></sector-identifier-uri-input>
+          </div>
+        </div>
+
+        <!-- Login URI -->
+        <div class="property uri">
+          <h4 horizontal layout>
+            <span flex>{{resources.loginUri}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleLoginUriHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="loginUriHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.loginUri}}</h3>
+            <iframe src="help/{{locale}}/login-uri.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleLoginUriHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <login-uri-input id="loginUriInput" label="URL" value="{{data.loginUri}}"></login-uri-input>
+          </div>
+        </div>
+
+        <!-- Request URIs -->
+        <div class="property uris">
+          <h4 horizontal layout>
+            <span flex>{{resources.requestUris}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleRequestUrisHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="requestUrisHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.requestUris}}</h3>
+            <iframe src="help/{{locale}}/request-uris.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestUrisHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <request-uris-input id="requestUrisInput" label="URL1,URL2,..." value="{{data.requestUris}}"></request-uris-input>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <h3>{{resources.authorization}}</h3>
+
+      <div class="property-group" vertical layout wrap>
+        <!-- Default Max Age -->
+        <div class="property number">
+          <h4 horizontal layout>
+            <span flex>{{resources.defaultMaxAge}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleDefaultMaxAgeHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="defaultMaxAgeHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.defaultMaxAge}}</h3>
+            <iframe src="help/{{locale}}/default-max-age.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleDefaultMaxAgeHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+          <default-max-age-input id="defaultMaxAgeInput" label="100" value="{{data.defaultMaxAge}}"></default-max-age-input>
+          </div>
+        </div>
+
+        <!-- Default Acrs -->
+        <div class="property acrs">
+          <h4 horizontal layout>
+            <span flex>{{resources.defaultAcrs}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleDefaultAcrsHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="defaultAcrsHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.defaultAcrs}}</h3>
+            <iframe src="help/{{locale}}/default-acrs.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleDefaultAcrsHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <default-acrs-input id="defaultAcrsInput" label="" value="{{data.defaultAcrs}}"></default-acrs-input>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <h3>{{resources.jwks}}</h3>
+
+      <div class="property-group" vertical layout wrap>
+        <!-- JSON Web Key Set URI -->
+        <div class="property uri">
+          <h4 horizontal layout>
+            <span flex>{{resources.jwksUri}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleJwksUriHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="jwksUriHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.jwksUri}}</h3>
+            <iframe src="help/{{locale}}/jwks-uri.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleJwksUriHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <jwks-uri-input id="jwksUriInput" label="URL" value="{{data.jwksUri}}"></jwks-uri-input>
+          </div>
+        </div>
+
+        <!-- JSON Web Key Set -->
+        <div class="property json">
+          <h4 horizontal layout>
+            <span flex>{{resources.jwks}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleJwksHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="jwksHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.jwks}}</h3>
+            <iframe src="help/{{locale}}/jwks.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleJwksHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <jwks-input id="jwksInput" label="{ 'key1': 'value1', 'key2': 'value2', ... }" value="{{data.jwks}}"></jwks-input>
+          </div>
+        </div>
+      </div>
+
+      <h3>{{resources.idToken}}</h3>
+
+      <div class="property-group" horizontal layout wrap>
+
+        <!-- Id Token Sign Algorithm -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.signAlg}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleIdTokenSignAlgHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="idTokenSignAlgHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.idTokenSignAlg}}</h3>
+            <iframe src="help/{{locale}}/id-token-sign-alg.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleIdTokenSignAlgHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="idTokenSignAlgValue" selected="{{data.idTokenSignAlg}}" valueattr="value">
+              <template repeat="{{def in jws_alg_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- Id Token Encryption Algorithm (alg) -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.encryptionAlg}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleIdTokenEncryptionAlgHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="idTokenEncryptionAlgHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.idTokenEncryptionAlg}}</h3>
+            <iframe src="help/{{locale}}/id-token-encryption-alg.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleIdTokenEncryptionAlgHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="idTokenEncryptionAlgValue" selected="{{data.idTokenEncryptionAlg}}" valueattr="value">
+              <template repeat="{{def in jwe_alg_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- Id Token Encryption Algorithm (enc) -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.encryptionEnc}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleIdTokenEncryptionEncHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="idTokenEncryptionEncHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.idTokenEncryptionEnc}}</h3>
+            <iframe src="help/{{locale}}/id-token-encryption-enc.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleIdTokenEncryptionEncHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="idTokenEncryptionEncValue" selected="{{data.idTokenEncryptionEnc}}" valueattr="value">
+              <template repeat="{{def in jwe_enc_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <h3>{{resources.userInfoEndpoint}}</h3>
+
+      <div class="property-group" horizontal layout wrap>
+
+        <!-- User Info Sign Algorithm -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.signAlg}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleUserInfoSignAlgHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="userInfoSignAlgHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.userInfoSignAlg}}</h3>
+            <iframe src="help/{{locale}}/user-info-sign-alg.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleUserInfoSignAlgHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="userInfoSignAlgValue" selected="{{data.userInfoSignAlg}}" valueattr="value">
+              <template repeat="{{def in jws_alg_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- User Info Encryption Algorithm (alg) -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.encryptionAlg}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleUserInfoEncryptionAlgHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="userInfoEncryptionAlgHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.userInfoEncryptionAlg}}</h3>
+            <iframe src="help/{{locale}}/user-info-encryption-alg.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleUserInfoEncryptionAlgHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="userInfoEncryptionAlgValue" selected="{{data.userInfoEncryptionAlg}}" valueattr="value">
+              <template repeat="{{def in jwe_alg_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- User Info Encryption Algorithm (enc) -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.encryptionEnc}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleUserInfoEncryptionEncHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="userInfoEncryptionEncHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.userInfoEncryptionEnc}}</h3>
+            <iframe src="help/{{locale}}/user-info-encryption-enc.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleUserInfoEncryptionEncHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="userInfoEncryptionEncValue" selected="{{data.userInfoEncryptionEnc}}" valueattr="value">
+              <template repeat="{{def in jwe_enc_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <h3>{{resources.requestObject}}</h3>
+
+      <div class="property-group" horizontal layout wrap>
+
+        <!-- Request Sign Algorithm -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.signAlg}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleRequestSignAlgHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="requestSignAlgHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.requestSignAlg}}</h3>
+            <iframe src="help/{{locale}}/request-sign-alg.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestSignAlgHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="requestSignAlgValue" selected="{{data.requestSignAlg}}" valueattr="value">
+              <template repeat="{{def in jws_alg_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- Request Encryption Algorithm (alg) -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.encryptionAlg}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleRequestEncryptionAlgHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="requestEncryptionAlgHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.requestEncryptionAlg}}</h3>
+            <iframe src="help/{{locale}}/request-encryption-alg.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestEncryptionAlgHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="requestEncryptionAlgValue" selected="{{data.requestEncryptionAlg}}" valueattr="value">
+              <template repeat="{{def in jwe_alg_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- Request Encryption Algorithm (enc) -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.encryptionEnc}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleRequestEncryptionEncHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="requestEncryptionEncHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.requestEncryptionEnc}}</h3>
+            <iframe src="help/{{locale}}/request-encryption-enc.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestEncryptionEncHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="requestEncryptionEncValue" selected="{{data.requestEncryptionEnc}}" valueattr="value">
+              <template repeat="{{def in jwe_enc_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+      <h3>{{resources.tokenEndpoint}}</h3>
+
+      <div class="property-group" horizontal layout wrap>
+        <!-- Token Auth Method -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.clientAuthMethod}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleTokenAuthMethodHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="tokenAuthMethodHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.tokenAuthMethod}}</h3>
+            <iframe src="help/{{locale}}/token-auth-method.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleTokenAuthMethodHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="tokenAuthMethodValue" selected="{{data.tokenAuthMethod}}" valueattr="value">
+              <template repeat="{{def in client_auth_method_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <!-- Token Auth Sign Algorithm -->
+        <div class="property selection">
+          <h4 horizontal layout>
+            <span flex>{{resources.signAlg}}</span>
+            <paper-icon-button icon="help" on-click="{{toggleTokenAuthSignAlgHelp}}"></paper-icon-button>
+          </h4>
+          <core-overlay id="tokenAuthSignAlgHelp" backdrop transition="core-transition-center">
+            <h3>{{resources.tokenAuthSignAlg}}</h3>
+            <iframe src="help/{{locale}}/token-auth-sign-alg.html" frameborder=0></iframe>
+            <br>
+            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleTokenAuthSignAlgHelp}}"></paper-button>
+          </core-overlay>
+          <div class="property-value">
+            <paper-radio-group id="tokenAuthSignAlgValue" selected="{{data.tokenAuthSignAlg}}" valueattr="value">
+              <template repeat="{{def in jws_alg_definition}}">
+                <paper-radio-button name="{{def.name}}" label="{{def.name}}" value="{{def.value}}" noink></paper-radio-button>
+              </template>
+            </paper-radio-group>
+          </div>
+        </div>
+
+      </div> <!-- property-group -->
+
+    </div> <!-- container -->
+  </template>
+
+  <!-- Authlete Parameter Definition -->
+  <script src="authlete-component-client-default-data.js"></script>
+  <script src="authlete-component-client-resources_en.js"></script>
+  <script src="definition/jws-alg.js"></script>
+  <script src="definition/jwe-alg.js"></script>
+  <script src="definition/jwe-enc.js"></script>
+  <script src="definition/client-auth-method.js"></script>
+  <script src="definition/subject-type-def.js"></script>
+
+  <script>
+    Polymer({
+      created: function() {
+        this.data = authlete_component_client_default_data;
+        this.resources = authlete_component_client_resources_en;
+        this.jws_alg_definition = jws_alg_definition;
+        this.jwe_alg_definition = jwe_alg_definition;
+        this.jwe_enc_definition = jwe_enc_definition;
+        this.client_auth_method_definition = client_auth_method_definition;
+        this.subject_type_definition = subject_type_definition;
+      },
+
+      ready: function() {
+      },
+
+      toggleSubjectTypeHelp: function() {
+        this.$.subjectTypeHelp.toggle();
+      },
+
+      toggleSectorIdentifierUriHelp: function() {
+        this.$.sectorIdentifierHelp.toggle();
+      },
+
+      toggleLoginUriHelp: function() {
+        this.$.loginUriHelp.toggle();
+      },
+
+      toggleRequestUrisHelp: function() {
+        this.$.requestUrisHelp.toggle();
+      },
+
+      toggleDefaultMaxAgeHelp: function() {
+        this.$.defaultMaxAgeHelp.toggle();
+      },
+
+      toggleDefaultAcrsHelp: function() {
+        this.$.defaultAcrsHelp.toggle();
+      },
+
+      toggleJwksUriHelp: function() {
+        this.$.jwksUriHelp.toggle();
+      },
+
+      toggleJwksHelp: function() {
+        this.$.jwksHelp.toggle();
+      },
+
+      toggleIdTokenSignAlgHelp: function() {
+        this.$.idTokenSignAlgHelp.toggle();
+      },
+
+      toggleIdTokenEncryptionAlgHelp: function() {
+        this.$.idTokenEncryptionAlgHelp.toggle();
+      },
+
+      toggleIdTokenEncryptionEncHelp: function() {
+        this.$.idTokenEncryptionEncHelp.toggle();
+      },
+
+      toggleUserInfoSignAlgHelp: function() {
+        this.$.userInfoSignAlgHelp.toggle();
+      },
+
+      toggleUserInfoEncryptionAlgHelp: function() {
+        this.$.userInfoEncryptionAlgHelp.toggle();
+      },
+
+      toggleUserInfoEncryptionEncHelp: function() {
+        this.$.userInfoEncryptionEncHelp.toggle();
+      },
+
+      toggleRequestSignAlgHelp: function() {
+        this.$.requestSignAlgHelp.toggle();
+      },
+
+      toggleRequestEncryptionAlgHelp: function() {
+        this.$.requestEncryptionAlgHelp.toggle();
+      },
+
+      toggleRequestEncryptionEncHelp: function() {
+        this.$.requestEncryptionEncHelp.toggle();
+      },
+
+      toggleTokenAuthMethodHelp: function() {
+        this.$.tokenAuthMethodHelp.toggle();
+      },
+
+      toggleTokenAuthSignAlgHelp: function() {
+        this.$.tokenAuthSignAlgHelp.toggle();
+      }
+    });
+  </script>
+
+</polymer-element>
