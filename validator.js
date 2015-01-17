@@ -510,7 +510,7 @@ function validateRequestUris(valueArr)
   }
 
   // Ensure that the number of the elements does not exceed the maximum count.
-  validateCountMax(REQUEST_URIS, valueArr.length, CONTACTS_COUNT_MAX);
+  validateCountMax(REQUEST_URIS, valueArr.length, REQUEST_URIS_COUNT_MAX);
 
   var validatedRequestUris = [];
 

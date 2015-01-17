@@ -6,7 +6,7 @@
   <title>authlete-component-client Demo</title>
 
   <script src="../webcomponentsjs/webcomponents.js"></script>
-  <link rel="import" href="authlete-component-client2.html">
+  <link rel="import" href="authlete-component-client.html">
 
 </head>
 <body unresolved>
@@ -15,27 +15,8 @@
 
   <h4>#1</h4>
   <authlete-component-client id="No1" locale="en"></authlete-component-client>
-<!--
 
-  <h4>#2</h4>
-  <authlete-component-client id="No2" locale="ja"></authlete-component-client>
-
--->
   <script>
-    var json = JSON.stringify({
-      "clientId": 15873648196,
-      "clientName": "Example Client",
-      "clientType": "CONFIDENTIAL",
-      "applicationType": "NATIVE",
-      "responseTypes": [ "CODE", "TOKEN", "ID_TOKEN", "CODE_ID_TOKEN" ],
-      "clientUri": "https://www.example.com/",
-      "logoUri": "https://www.example.com/logo.png",
-      "policyUri": "https://www.example.com/policy.html",
-      "tosUri": "https://www.example.com/tos.html",
-      "idTokenSignAlg": "HS384"
-    });
-
-    // document.querySelector('#No2').setAttribute('data', json);
   </script>
 </body>
 </html>

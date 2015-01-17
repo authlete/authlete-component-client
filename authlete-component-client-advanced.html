@@ -7,8 +7,6 @@
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
-<link rel="import" href="../paper-tabs/paper-tab.html">
-<link rel="import" href="../paper-tabs/paper-tabs.html">
 <link rel="import" href="../paper-input/paper-input-decorator.html">
 <link rel="import" href="input/sector-identifier-uri-input.html">
 <link rel="import" href="input/login-uri-input.html">
@@ -39,7 +37,9 @@
             <h3>{{resources.subjectType}}</h3>
             <iframe src="help/{{locale}}/subject-type.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleSubjectTypeHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleSubjectTypeHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group selected="{{data.subjectType}}" valueattr="value">
@@ -60,7 +60,9 @@
             <h3>{{resources.sectorIdentifierUri}}</h3>
             <iframe src="help/{{locale}}/sector-identifier-uri.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleSectorIdentifierUriHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleSectorIdentifierUriHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <sector-identifier-uri-input id="sectorIdentifierUriInput" label="URL" value="{{data.sectorIdentifierUri}}"></sector-identifier-uri-input>
@@ -77,7 +79,9 @@
             <h3>{{resources.loginUri}}</h3>
             <iframe src="help/{{locale}}/login-uri.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleLoginUriHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleLoginUriHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <login-uri-input id="loginUriInput" label="URL" value="{{data.loginUri}}"></login-uri-input>
@@ -94,7 +98,9 @@
             <h3>{{resources.requestUris}}</h3>
             <iframe src="help/{{locale}}/request-uris.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestUrisHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleRequestUrisHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <request-uris-input id="requestUrisInput" label="URL1,URL2,..." value="{{data.requestUris}}"></request-uris-input>
@@ -116,7 +122,9 @@
             <h3>{{resources.defaultMaxAge}}</h3>
             <iframe src="help/{{locale}}/default-max-age.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleDefaultMaxAgeHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleDefaultMaxAgeHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
           <default-max-age-input id="defaultMaxAgeInput" label="100" value="{{data.defaultMaxAge}}"></default-max-age-input>
@@ -133,7 +141,9 @@
             <h3>{{resources.defaultAcrs}}</h3>
             <iframe src="help/{{locale}}/default-acrs.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleDefaultAcrsHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleDefaultAcrsHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <default-acrs-input id="defaultAcrsInput" label="" value="{{data.defaultAcrs}}"></default-acrs-input>
@@ -155,7 +165,9 @@
             <h3>{{resources.jwksUri}}</h3>
             <iframe src="help/{{locale}}/jwks-uri.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleJwksUriHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleJwksUriHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <jwks-uri-input id="jwksUriInput" label="URL" value="{{data.jwksUri}}"></jwks-uri-input>
@@ -172,7 +184,9 @@
             <h3>{{resources.jwks}}</h3>
             <iframe src="help/{{locale}}/jwks.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleJwksHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleJwksHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <jwks-input id="jwksInput" label="{ 'key1': 'value1', 'key2': 'value2', ... }" value="{{data.jwks}}"></jwks-input>
@@ -194,7 +208,9 @@
             <h3>{{resources.idTokenSignAlg}}</h3>
             <iframe src="help/{{locale}}/id-token-sign-alg.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleIdTokenSignAlgHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleIdTokenSignAlgHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="idTokenSignAlgValue" selected="{{data.idTokenSignAlg}}" valueattr="value">
@@ -215,7 +231,9 @@
             <h3>{{resources.idTokenEncryptionAlg}}</h3>
             <iframe src="help/{{locale}}/id-token-encryption-alg.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleIdTokenEncryptionAlgHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleIdTokenEncryptionAlgHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="idTokenEncryptionAlgValue" selected="{{data.idTokenEncryptionAlg}}" valueattr="value">
@@ -236,7 +254,9 @@
             <h3>{{resources.idTokenEncryptionEnc}}</h3>
             <iframe src="help/{{locale}}/id-token-encryption-enc.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleIdTokenEncryptionEncHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleIdTokenEncryptionEncHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="idTokenEncryptionEncValue" selected="{{data.idTokenEncryptionEnc}}" valueattr="value">
@@ -263,7 +283,9 @@
             <h3>{{resources.userInfoSignAlg}}</h3>
             <iframe src="help/{{locale}}/user-info-sign-alg.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleUserInfoSignAlgHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleUserInfoSignAlgHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="userInfoSignAlgValue" selected="{{data.userInfoSignAlg}}" valueattr="value">
@@ -284,7 +306,9 @@
             <h3>{{resources.userInfoEncryptionAlg}}</h3>
             <iframe src="help/{{locale}}/user-info-encryption-alg.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleUserInfoEncryptionAlgHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleUserInfoEncryptionAlgHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="userInfoEncryptionAlgValue" selected="{{data.userInfoEncryptionAlg}}" valueattr="value">
@@ -305,7 +329,9 @@
             <h3>{{resources.userInfoEncryptionEnc}}</h3>
             <iframe src="help/{{locale}}/user-info-encryption-enc.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleUserInfoEncryptionEncHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleUserInfoEncryptionEncHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="userInfoEncryptionEncValue" selected="{{data.userInfoEncryptionEnc}}" valueattr="value">
@@ -332,7 +358,9 @@
             <h3>{{resources.requestSignAlg}}</h3>
             <iframe src="help/{{locale}}/request-sign-alg.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestSignAlgHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleRequestSignAlgHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="requestSignAlgValue" selected="{{data.requestSignAlg}}" valueattr="value">
@@ -353,7 +381,9 @@
             <h3>{{resources.requestEncryptionAlg}}</h3>
             <iframe src="help/{{locale}}/request-encryption-alg.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestEncryptionAlgHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleRequestEncryptionAlgHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="requestEncryptionAlgValue" selected="{{data.requestEncryptionAlg}}" valueattr="value">
@@ -374,7 +404,9 @@
             <h3>{{resources.requestEncryptionEnc}}</h3>
             <iframe src="help/{{locale}}/request-encryption-enc.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRequestEncryptionEncHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleRequestEncryptionEncHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="requestEncryptionEncValue" selected="{{data.requestEncryptionEnc}}" valueattr="value">
@@ -400,7 +432,9 @@
             <h3>{{resources.tokenAuthMethod}}</h3>
             <iframe src="help/{{locale}}/token-auth-method.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleTokenAuthMethodHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleTokenAuthMethodHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="tokenAuthMethodValue" selected="{{data.tokenAuthMethod}}" valueattr="value">
@@ -421,7 +455,9 @@
             <h3>{{resources.tokenAuthSignAlg}}</h3>
             <iframe src="help/{{locale}}/token-auth-sign-alg.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleTokenAuthSignAlgHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleTokenAuthSignAlgHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group id="tokenAuthSignAlgValue" selected="{{data.tokenAuthSignAlg}}" valueattr="value">
@@ -447,96 +483,97 @@
   <script src="definition/subject-type-def.js"></script>
 
   <script>
-    Polymer({
-      created: function() {
-        this.data = authlete_component_client_default_data;
-        this.resources = authlete_component_client_resources_en;
-        this.jws_alg_definition = jws_alg_definition;
-        this.jwe_alg_definition = jwe_alg_definition;
-        this.jwe_enc_definition = jwe_enc_definition;
-        this.client_auth_method_definition = client_auth_method_definition;
-        this.subject_type_definition = subject_type_definition;
-      },
+    (function() {
+      Polymer({
 
-      ready: function() {
-      },
+        created: function () {
+          this.data = authlete_component_client_default_data;
+          this.resources = authlete_component_client_resources_en;
+          this.jws_alg_definition = jws_alg_definition;
+          this.jwe_alg_definition = jwe_alg_definition;
+          this.jwe_enc_definition = jwe_enc_definition;
+          this.client_auth_method_definition = client_auth_method_definition;
+          this.subject_type_definition = subject_type_definition;
+        },
 
-      toggleSubjectTypeHelp: function() {
-        this.$.subjectTypeHelp.toggle();
-      },
+        toggleSubjectTypeHelp: function () {
+          this.$.subjectTypeHelp.toggle();
+        },
 
-      toggleSectorIdentifierUriHelp: function() {
-        this.$.sectorIdentifierHelp.toggle();
-      },
+        toggleSectorIdentifierUriHelp: function () {
+          this.$.sectorIdentifierHelp.toggle();
+        },
 
-      toggleLoginUriHelp: function() {
-        this.$.loginUriHelp.toggle();
-      },
+        toggleLoginUriHelp: function () {
+          this.$.loginUriHelp.toggle();
+        },
 
-      toggleRequestUrisHelp: function() {
-        this.$.requestUrisHelp.toggle();
-      },
+        toggleRequestUrisHelp: function () {
+          this.$.requestUrisHelp.toggle();
+        },
 
-      toggleDefaultMaxAgeHelp: function() {
-        this.$.defaultMaxAgeHelp.toggle();
-      },
+        toggleDefaultMaxAgeHelp: function () {
+          this.$.defaultMaxAgeHelp.toggle();
+        },
 
-      toggleDefaultAcrsHelp: function() {
-        this.$.defaultAcrsHelp.toggle();
-      },
+        toggleDefaultAcrsHelp: function () {
+          this.$.defaultAcrsHelp.toggle();
+        },
 
-      toggleJwksUriHelp: function() {
-        this.$.jwksUriHelp.toggle();
-      },
+        toggleJwksUriHelp: function () {
+          this.$.jwksUriHelp.toggle();
+        },
 
-      toggleJwksHelp: function() {
-        this.$.jwksHelp.toggle();
-      },
+        toggleJwksHelp: function () {
+          this.$.jwksHelp.toggle();
+        },
 
-      toggleIdTokenSignAlgHelp: function() {
-        this.$.idTokenSignAlgHelp.toggle();
-      },
+        toggleIdTokenSignAlgHelp: function () {
+          this.$.idTokenSignAlgHelp.toggle();
+        },
 
-      toggleIdTokenEncryptionAlgHelp: function() {
-        this.$.idTokenEncryptionAlgHelp.toggle();
-      },
+        toggleIdTokenEncryptionAlgHelp: function () {
+          this.$.idTokenEncryptionAlgHelp.toggle();
+        },
 
-      toggleIdTokenEncryptionEncHelp: function() {
-        this.$.idTokenEncryptionEncHelp.toggle();
-      },
+        toggleIdTokenEncryptionEncHelp: function () {
+          this.$.idTokenEncryptionEncHelp.toggle();
+        },
 
-      toggleUserInfoSignAlgHelp: function() {
-        this.$.userInfoSignAlgHelp.toggle();
-      },
+        toggleUserInfoSignAlgHelp: function () {
+          this.$.userInfoSignAlgHelp.toggle();
+        },
 
-      toggleUserInfoEncryptionAlgHelp: function() {
-        this.$.userInfoEncryptionAlgHelp.toggle();
-      },
+        toggleUserInfoEncryptionAlgHelp: function () {
+          this.$.userInfoEncryptionAlgHelp.toggle();
+        },
 
-      toggleUserInfoEncryptionEncHelp: function() {
-        this.$.userInfoEncryptionEncHelp.toggle();
-      },
+        toggleUserInfoEncryptionEncHelp: function () {
+          this.$.userInfoEncryptionEncHelp.toggle();
+        },
 
-      toggleRequestSignAlgHelp: function() {
-        this.$.requestSignAlgHelp.toggle();
-      },
+        toggleRequestSignAlgHelp: function () {
+          this.$.requestSignAlgHelp.toggle();
+        },
 
-      toggleRequestEncryptionAlgHelp: function() {
-        this.$.requestEncryptionAlgHelp.toggle();
-      },
+        toggleRequestEncryptionAlgHelp: function () {
+          this.$.requestEncryptionAlgHelp.toggle();
+        },
 
-      toggleRequestEncryptionEncHelp: function() {
-        this.$.requestEncryptionEncHelp.toggle();
-      },
+        toggleRequestEncryptionEncHelp: function () {
+          this.$.requestEncryptionEncHelp.toggle();
+        },
 
-      toggleTokenAuthMethodHelp: function() {
-        this.$.tokenAuthMethodHelp.toggle();
-      },
+        toggleTokenAuthMethodHelp: function () {
+          this.$.tokenAuthMethodHelp.toggle();
+        },
 
-      toggleTokenAuthSignAlgHelp: function() {
-        this.$.tokenAuthSignAlgHelp.toggle();
-      }
-    });
+        toggleTokenAuthSignAlgHelp: function () {
+          this.$.tokenAuthSignAlgHelp.toggle();
+        }
+
+      });
+    })();
   </script>
 
 </polymer-element>

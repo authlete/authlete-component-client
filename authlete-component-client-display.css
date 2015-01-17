@@ -9,12 +9,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.tabs {
-  background-color: rgba(50, 50, 50, 0.6);
-  color: #fff;
+.client-error {
+  color: rgb(211, 67, 54);
+  background-color: rgb(255, 215, 221);
 }
 
-.submit {
+.client-submit {
   background: steelblue;
   color: white;
 }

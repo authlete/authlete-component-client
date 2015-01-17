@@ -1,12 +1,21 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="authlete-component-client-basic.html">
 <link rel="import" href="authlete-component-client-advanced.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-shadow/paper-shadow.html">
 <link rel="import" href="../ajax-form/ajax-form.html">
 
 <polymer-element name="authlete-component-client-display" attributes="mode resources config data locale">
 
   <template>
     <link rel="stylesheet" href="authlete-component-client-display.css">
+
+    <!-- Error on sending data -->
+    <div id="error">
+      <paper-shadow>
+        <paper-item class="client-error" noink>{{errorMessage}}</paper-item>
+      </paper-shadow>
+    </div>
 
     <!--  Display  -->
     <template if="{{ mode === 'basic' }}">
@@ -17,139 +26,124 @@
     </template>
 
     <!--  Button  -->
-    <template if="{{ data.clientId != null }}">
-      <paper-button class="submit" on-click="{{update}}">{{resources.update}}</paper-button>
-    </template>
-    <template if="{{ data.clientId == null }}">
-      <paper-button class="submit" on-click="{{create}}">{{resources.create}}</paper-button>
-    </template>
+    <paper-button class="client-submit" on-click="{{sendData}}">{{ data.clientId == null ? resources.create : resources.update }}</paper-button>
 
     <!-- Hidden Form -->
-    <form id="form" is="ajax-form" action="my/form/handler" method="post">
+    <form id="form" is="ajax-form" method="post" action="{{ data.clientId == null ? config.clientCreateUri : config.clientUpdateUri }}">
       <div id="formData"></div>
     </form>
   </template>
 
   <script src="authlete-component-client-configuration.js"></script>
-  <script src="authlete-component-client-default-data-dummy.js"></script>
   <!--<script src="input/validator.js"></script>-->
 
   <script>
-    Polymer({
-      created: function() {
-        this.mode      = "basic";
-        this.config    = config;
-        this.resources = authlete_component_client_resources_en;
-        this.data      = authlete_component_client_default_data;
-      },
+    (function() {
+      Polymer({
 
-      ready: function() {
-        // Set the attributes to the form.
-        this.setFormAttributes();
+        created: function () {
+          this.mode = "basic";
+          this.config = config;
+          this.resources = authlete_component_client_resources_en;
+          this.errorMessage = "";
+        },
 
-        // Set the event listeners to the form.
-        this.setFormEventListeners();
-      },
+        ready: function () {
+          // Set the event listeners to the form.
+          this.setFormEventListeners();
 
-      setFormAttributes: function () {
-        this.$.form.setAttribute("is", "ajax-form");
-        this.$.form.setAttribute("method", "post");
-        this.$.form.setAttribute("action", this.config.clientCreateUri);
-      },
+          // Hide the error.
+          this.$.error.style.visibility = "hidden";
+        },
 
-      setFormEventListeners: function () {
-        this.$.form.addEventListener('invalid', function(e)
-        {
-          alert("Invalid.");
-        });
+        setFormEventListeners: function () {
+          var that = this;
 
-        this.$.form.addEventListener('submitting', function(e)
-        {
-          alert("Submitting...");
-        });
+          // On invalid data.
+          this.$.form.addEventListener('invalid', function (e) {
+            that.showError(e)
+          });
 
-        this.$.form.addEventListener('submitted', function(e)
-        {
-          alert("Submitted.");
-        });
-      },
+          // On successfully submitted.
+          this.$.form.addEventListener('submitted', function (e) {
+          });
+        },
 
-      create: function() {
-        // Validate the data.
-        try
-        {
-          this.validate();
-        }
-        catch (e)
-        {
-          alert(e);
-
-          return;
-        }
-
-        // Get non empty data.
-        var nonEmptyData = this.extractNonEmptyData();
-
-        // Send the data.
-        this.sendData(nonEmptyData);
-      },
-
-      update: function() {
-      },
-
-      validate: function() {
-        validate(this.data);
-      },
-
-      extractNonEmptyData: function() {
-        var nonEmptyData = {};
-
-        for (var key in this.data)
-        {
-          if (isEmpty(this.data[key]) === false)
-          {
-            nonEmptyData[key] = this.data[key];
+        sendData: function () {
+          // Validate the data.
+          try {
+            validate(this.data);
           }
-        }
+          catch (e) {
+            this.showError(e);
 
-        return nonEmptyData;
-      },
-
-      sendData: function(data) {
-        // Remove the old data associated with the form.
-        this.removeOldFormData();
-
-        // Set the data to the form.
-        this.setFormData(data);
-
-        // Submit the form.
-        this.$.form.submit();
-      },
-
-      removeOldFormData: function() {
-        while(this.$.formData.firstChild)
-        {
-          this.$.formData.removeChild(this.$.formData.firstChild);
-        }
-      },
-
-      setFormData: function (data) {
-        for (var key in data)
-        {
-          if (data.hasOwnProperty(key))
-          {
-            var hiddenField = document.createElement("input");
-
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", data[key]);
-
-            this.$.formData.appendChild(hiddenField);
+            return;
           }
-        }
-      }
 
-    });
+          // Extract non empty data.
+          var nonEmptyData = this.extractNonEmptyData();
+
+          // Send the data.
+          this.doSendData(nonEmptyData);
+        },
+
+        extractNonEmptyData: function () {
+          var nonEmptyData = {};
+
+          for (var key in this.data) {
+            if (isEmpty(this.data[key]) === false) {
+              nonEmptyData[key] = this.data[key];
+            }
+          }
+
+          return nonEmptyData;
+        },
+
+        doSendData: function (data) {
+          // Remove the old data associated with the form.
+          this.removeOldFormData();
+
+          // Set the data to the form.
+          this.setFormData(data);
+
+          // Submit the form.
+          this.$.form.submit();
+        },
+
+        removeOldFormData: function () {
+          while (this.$.formData.firstChild) {
+            this.$.formData.removeChild(this.$.formData.firstChild);
+          }
+        },
+
+        setFormData: function (data) {
+          for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              var hiddenField = document.createElement("input");
+
+              hiddenField.setAttribute("type", "hidden");
+              hiddenField.setAttribute("name", key);
+              hiddenField.setAttribute("value", data[key]);
+
+              this.$.formData.appendChild(hiddenField);
+            }
+          }
+        },
+
+        showError: function (data) {
+          // Set the data.
+          this.errorMessage = data;
+
+          // Show the error.
+          this.$.error.style.visibility = "visible";
+
+          // Scroll back to the error.
+          location.href = "#";
+          location.href = "#error";
+        }
+
+      });
+    }) ();
   </script>
 
 </polymer-element>

@@ -8,8 +8,6 @@
 <link rel="import" href="../paper-input/paper-autogrow-textarea.html">
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
-<link rel="import" href="../paper-tabs/paper-tab.html">
-<link rel="import" href="../paper-tabs/paper-tabs.html">
 <link rel="import" href="../core-overlay/core-overlay.html">
 <link rel="import" href="../core-transition/core-transition.html">
 <link rel="import" href="input/client-name-input.html">
@@ -43,7 +41,10 @@
             <core-overlay id="clientIdHelp" backdrop transition="core-transition-center">
               <h3>{{resources.clientId}}</h3>
               <iframe src="help/{{locale}}/client-id.html" frameborder=0></iframe>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientIdHelp}}"></paper-button>
+              <br>
+              <paper-button class="help-close-button" on-click="{{toggleClientIdHelp}}">
+                {{resources.close}}
+              </paper-button>
             </core-overlay>
             <div class="property-value disabled">
               <paper-input value="{{data.clientId}}" disabled readonly></paper-input>
@@ -63,7 +64,9 @@
             <h3>{{resources.clientName}}</h3>
             <iframe src="help/{{locale}}/client-name.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientNameHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleClientNameHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <client-name-input id="clientNameInput" value="{{data.clientName}}"></client-name-input>
@@ -80,7 +83,9 @@
             <h3>{{resources.clientType}}</h3>
             <iframe src="help/{{locale}}/client-type.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientTypeHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleClientTypeHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group selected="{{data.clientType}}" valueattr="value">
@@ -101,7 +106,9 @@
             <h3>{{resources.applicationType}}</h3>
             <iframe src="help/{{locale}}/application-type.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleApplicationTypeHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleApplicationTypeHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <paper-radio-group selected="{{data.applicationType}}" valueattr="value">
@@ -125,7 +132,9 @@
             <h3>{{resources.responseTypes}}</h3>
             <iframe src="help/{{locale}}/response-types.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleResponseTypesHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleResponseTypesHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <core-selector id="responseTypesValue" target="{{$.responseTypesOptions}}" multi itemsselector="paper-checkbox" valueattr="value" selected="{{data.responseTypes}}" selectedproperty="checked"></core-selector>
@@ -148,7 +157,9 @@
             <h3>{{resources.grantTypes}}</h3>
             <iframe src="help/{{locale}}/grant-types.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleGrantTypesHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleGrantTypesHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <core-selector id="grantTypesValue" target="{{$.grantTypesOptions}}" multi itemsselector="paper-checkbox" valueattr="value" selected="{{data.grantTypes}}" selectedproperty="checked"></core-selector>
@@ -174,7 +185,9 @@
             <h3>{{resources.redirectUris}}</h3>
             <iframe src="help/{{locale}}/redirect-uris.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleRedirectUrisHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleRedirectUrisHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <redirect-uris-input id="redirectUrisInput" label="URL1,URL2,..." value="{{data.redirectUris}}"></redirect-uris-input>
@@ -191,7 +204,9 @@
             <h3>{{resources.contacts}}</h3>
             <iframe src="help/{{locale}}/contacts.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleContactsHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleContactsHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <contacts-input id="contactsInput" label="URL1,URL2,..." value="{{data.contacts}}"></contacts-input>
@@ -208,7 +223,9 @@
             <h3>{{resources.description}}</h3>
             <iframe src="help/{{locale}}/description.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleDescriptionHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleDescriptionHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <description-input id="descriptionInput" value="{{data.description}}"></description-input>
@@ -229,7 +246,9 @@
             <h3>{{resources.clientUri}}</h3>
             <iframe src="help/{{locale}}/client-uri.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleClientUriHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleClientUriHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <client-uri-input id="clientUriInput" label="URL" value="{{data.clientUri}}"></client-uri-input>
@@ -246,7 +265,9 @@
             <h3>{{resources.logoUri}}</h3>
             <iframe src="help/{{locale}}/logo-uri.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleLogoUriHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleLogoUriHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <logo-uri-input id="logoUriInput" label="URL" value="{{data.logoUri}}"></logo-uri-input>
@@ -263,7 +284,9 @@
             <h3>{{resources.policyUri}}</h3>
             <iframe src="help/{{locale}}/policy-uri.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{togglePolicyUriHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{togglePolicyUriHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <policy-uri-input id="policyUriInput" label="URL" value="{{data.policyUri}}"></policy-uri-input>
@@ -280,7 +303,9 @@
             <h3>{{resources.tosUri}}</h3>
             <iframe src="help/{{locale}}/tos-uri.html" frameborder=0></iframe>
             <br>
-            <paper-button class="help-close-button" label="{{resources.close}}" on-click="{{toggleTosUriHelp}}"></paper-button>
+            <paper-button class="help-close-button" on-click="{{toggleTosUriHelp}}">
+              {{resources.close}}
+            </paper-button>
           </core-overlay>
           <div class="property-value">
             <tos-uri-input id="tosUriInput" label="URL" value="{{data.tosUri}}"></tos-uri-input>
@@ -301,70 +326,72 @@
   <script src="definition/grant-types.js"></script>
 
   <script>
+    (function() {
+      Polymer({
 
-    Polymer({
-      created: function() {
-        this.data = authlete_component_client_default_data;
-        this.resources = authlete_component_client_resources_en;
-        this.application_type_definition = application_type_definition;
-        this.client_type_definition = client_type_definition;
-        this.response_types_definition = response_types_definition;
-        this.grant_types_definition = grant_types_definition;
-      },
+        created: function () {
+          this.data = authlete_component_client_default_data;
+          this.resources = authlete_component_client_resources_en;
+          this.application_type_definition = application_type_definition;
+          this.client_type_definition = client_type_definition;
+          this.response_types_definition = response_types_definition;
+          this.grant_types_definition = grant_types_definition;
+        },
 
-      toggleClientIdHelp: function() {
-        this.$.clientIdHelp.toggle();
-      },
+        toggleClientIdHelp: function () {
+          this.$.clientIdHelp.toggle();
+        },
 
-      toggleClientNameHelp: function() {
-        this.$.clientNameHelp.toggle();
-      },
+        toggleClientNameHelp: function () {
+          this.$.clientNameHelp.toggle();
+        },
 
-      toggleClientTypeHelp: function() {
-        this.$.clientTypeHelp.toggle();
-      },
+        toggleClientTypeHelp: function () {
+          this.$.clientTypeHelp.toggle();
+        },
 
-      toggleApplicationTypeHelp: function() {
-        this.$.applicationTypeHelp.toggle();
-      },
+        toggleApplicationTypeHelp: function () {
+          this.$.applicationTypeHelp.toggle();
+        },
 
-      toggleResponseTypesHelp: function() {
-        this.$.responseTypesHelp.toggle();
-      },
+        toggleResponseTypesHelp: function () {
+          this.$.responseTypesHelp.toggle();
+        },
 
-      toggleGrantTypesHelp: function() {
-        this.$.grantTypesHelp.toggle();
-      },
+        toggleGrantTypesHelp: function () {
+          this.$.grantTypesHelp.toggle();
+        },
 
-      toggleContactsHelp: function() {
-        this.$.contactsHelp.toggle();
-      },
+        toggleContactsHelp: function () {
+          this.$.contactsHelp.toggle();
+        },
 
-      toggleRedirectUrisHelp: function() {
-        this.$.redirectUrisHelp.toggle();
-      },
+        toggleRedirectUrisHelp: function () {
+          this.$.redirectUrisHelp.toggle();
+        },
 
-      toggleDescriptionHelp: function() {
-        this.$.descriptionHelp.toggle();
-      },
+        toggleDescriptionHelp: function () {
+          this.$.descriptionHelp.toggle();
+        },
 
-      toggleClientUriHelp: function() {
-        this.$.clientUriHelp.toggle();
-      },
+        toggleClientUriHelp: function () {
+          this.$.clientUriHelp.toggle();
+        },
 
-      toggleLogoUriHelp: function() {
-        this.$.logoUriHelp.toggle();
-      },
+        toggleLogoUriHelp: function () {
+          this.$.logoUriHelp.toggle();
+        },
 
-      togglePolicyUriHelp: function() {
-        this.$.policyUriHelp.toggle();
-      },
+        togglePolicyUriHelp: function () {
+          this.$.policyUriHelp.toggle();
+        },
 
-      toggleTosUriHelp: function() {
-        this.$.tosUriHelp.toggle();
-      }
+        toggleTosUriHelp: function () {
+          this.$.tosUriHelp.toggle();
+        }
 
-    });
+      });
+    })();
   </script>
 
 </polymer-element>
