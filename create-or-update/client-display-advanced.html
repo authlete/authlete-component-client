@@ -1,13 +1,13 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../paper-checkbox/paper-checkbox.html">
-<link rel="import" href="../paper-dialog/paper-dialog.html">
-<link rel="import" href="../paper-dialog/paper-dialog-transition.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-radio-group/paper-radio-group.html">
-<link rel="import" href="../paper-radio-button/paper-radio-button.html">
-<link rel="import" href="../paper-input/paper-input-decorator.html">
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../paper-dialog/paper-dialog.html">
+<link rel="import" href="../../paper-dialog/paper-dialog-transition.html">
+<link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../paper-input/paper-input-decorator.html">
 <link rel="import" href="input/sector-identifier-uri-input.html">
 <link rel="import" href="input/login-uri-input.html">
 <link rel="import" href="input/request-uris-input.html">
@@ -16,11 +16,11 @@
 <link rel="import" href="input/jwks-input.html">
 <link rel="import" href="input/jwks-uri-input.html">
 
-<polymer-element name="authlete-component-client-advanced" attributes="resources data locale">
+<polymer-element name="client-display-advanced" attributes="resources data locale">
 
   <template>
 
-    <link rel="stylesheet" href="authlete-component-client-advanced.css">
+    <link rel="stylesheet" href="client-display-advanced.css">
 
     <div id="container">
 
@@ -474,21 +474,21 @@
   </template>
 
   <!-- Authlete Parameter Definition -->
-  <script src="authlete-component-client-default-data.js"></script>
-  <script src="authlete-component-client-resources_en.js"></script>
-  <script src="definition/jws-alg.js"></script>
-  <script src="definition/jwe-alg.js"></script>
-  <script src="definition/jwe-enc.js"></script>
-  <script src="definition/client-auth-method.js"></script>
-  <script src="definition/subject-type-def.js"></script>
+  <script src="default-data.js"></script>
+  <script src="resources_en.js"></script>
+  <script src="../definition/jws-alg.js"></script>
+  <script src="../definition/jwe-alg.js"></script>
+  <script src="../definition/jwe-enc.js"></script>
+  <script src="../definition/client-auth-method.js"></script>
+  <script src="../definition/subject-type-def.js"></script>
 
   <script>
     (function() {
       Polymer({
 
         created: function () {
-          this.data = authlete_component_client_default_data;
-          this.resources = authlete_component_client_resources_en;
+          this.data = default_data;
+          this.resources = resources_en;
           this.jws_alg_definition = jws_alg_definition;
           this.jwe_alg_definition = jwe_alg_definition;
           this.jwe_enc_definition = jwe_enc_definition;

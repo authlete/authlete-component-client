@@ -1,14 +1,14 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="authlete-component-client-basic.html">
-<link rel="import" href="authlete-component-client-advanced.html">
-<link rel="import" href="../paper-item/paper-item.html">
-<link rel="import" href="../paper-shadow/paper-shadow.html">
-<link rel="import" href="../ajax-form/ajax-form.html">
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="client-display-basic.html">
+<link rel="import" href="client-display-advanced.html">
+<link rel="import" href="../../paper-item/paper-item.html">
+<link rel="import" href="../../paper-shadow/paper-shadow.html">
+<link rel="import" href="../../ajax-form/ajax-form.html">
 
-<polymer-element name="authlete-component-client-display" attributes="locale mode data">
+<polymer-element name="client-display" attributes="locale mode data">
 
   <template>
-    <link rel="stylesheet" href="authlete-component-client-display.css">
+    <link rel="stylesheet" href="client-display.css">
 
     <!-- Error on sending data -->
     <div id="error">
@@ -19,10 +19,10 @@
 
     <!--  Display  -->
     <template if="{{ mode === 'basic' }}">
-      <authlete-component-client-basic id="basic" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></authlete-component-client-basic>
+      <client-display-basic id="basic" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></client-display-basic>
     </template>
     <template if="{{ mode === 'advanced' }}">
-      <authlete-component-client-advanced id="advanced" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></authlete-component-client-advanced>
+      <client-display-advanced id="advanced" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></client-display-advanced>
     </template>
 
     <!--  Button  -->
@@ -34,7 +34,7 @@
     </form>
   </template>
 
-  <script src="authlete-component-client-configuration.js"></script>
+  <script src="configuration.js"></script>
   <!--<script src="input/validator.js"></script>-->
 
   <script>
@@ -84,9 +84,9 @@
          *
          * @attribute resources
          * @type Object
-         * @default authlete_component_client_resources_en
+         * @default resources_en
          */
-        resources: authlete_component_client_resources_en,
+        resources: resources_en,
 
         /**
          * The configuration of creating and updating client applications.
@@ -97,7 +97,7 @@
          * @type Object
          * @default config
          */
-        config: authlete_component_client_configuration,
+        config: configuration,
 
         /**
          * The error message about creating or updating client applications.
@@ -123,12 +123,12 @@
           // Set the resource depending on the given locale information.
           switch (this.locale) {
             case 'ja':
-              this.resources = authlete_component_client_resources_ja;
+              this.resources = resources_ja;
               break;
 
             default:
               this.locale = 'en';
-              this.resources = authlete_component_client_resources_en;
+              this.resources = resources_en;
               break;
           }
         },

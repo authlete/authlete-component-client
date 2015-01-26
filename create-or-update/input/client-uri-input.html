@@ -1,18 +1,19 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../../polymer/polymer.html">
 <link rel="import" href="validatable-paper-input.html">
 
-<polymer-element name="login-uri-input" extends="validatable-paper-input">
+<polymer-element name="client-uri-input" extends="validatable-paper-input">
 
 <template>
   <shadow></shadow>
 </template>
 
 <script>
+
   (function() {
     Polymer({
 
       validate: function() {
-        validateLoginUri(this.value);
+        validateClientUri(this.value);
       }
 
     });

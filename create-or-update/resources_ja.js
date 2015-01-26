@@ -1,4 +1,4 @@
-const authlete_component_client_resources_ja = {
+const resources_ja = {
   "applicationType": "アプリケーション種別",
   "authorization": "認証",
   "clientConfiguration": "クライアント設定",

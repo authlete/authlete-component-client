@@ -1,4 +1,4 @@
-const authlete_component_client_resources_en = {
+const resources_en = {
   "applicationType": "Application Type",
   "authorization": "Authorization",
   "clientConfiguration": "Client Configuration",

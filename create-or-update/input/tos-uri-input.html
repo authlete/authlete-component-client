@@ -1,19 +1,18 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../../polymer/polymer.html">
 <link rel="import" href="validatable-paper-input.html">
 
-<polymer-element name="contacts-input" extends="validatable-paper-input">
+<polymer-element name="tos-uri-input" extends="validatable-paper-input">
 
 <template>
   <shadow></shadow>
 </template>
 
 <script>
-
   (function() {
     Polymer({
 
       validate: function() {
-        validateContacts(this.value.split(","));
+        validateTosUri(this.value);
       }
 
     });

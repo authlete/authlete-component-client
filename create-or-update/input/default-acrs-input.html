@@ -1,7 +1,7 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../../polymer/polymer.html">
 <link rel="import" href="validatable-paper-input.html">
 
-<polymer-element name="client-uri-input" extends="validatable-paper-input">
+<polymer-element name="default-acrs-input" extends="validatable-paper-input">
 
 <template>
   <shadow></shadow>
@@ -13,7 +13,7 @@
     Polymer({
 
       validate: function() {
-        validateClientUri(this.value);
+        validateDefaultAcrs(this.value.split(","));
       }
 
     });

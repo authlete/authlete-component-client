@@ -1,15 +1,15 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../paper-checkbox/paper-checkbox.html">
-<link rel="import" href="../paper-dialog/paper-dialog.html">
-<link rel="import" href="../paper-dialog/paper-dialog-transition.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-input/paper-autogrow-textarea.html">
-<link rel="import" href="../paper-radio-group/paper-radio-group.html">
-<link rel="import" href="../paper-radio-button/paper-radio-button.html">
-<link rel="import" href="../core-overlay/core-overlay.html">
-<link rel="import" href="../core-transition/core-transition.html">
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../paper-dialog/paper-dialog.html">
+<link rel="import" href="../../paper-dialog/paper-dialog-transition.html">
+<link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-input/paper-autogrow-textarea.html">
+<link rel="import" href="../../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../core-overlay/core-overlay.html">
+<link rel="import" href="../../core-transition/core-transition.html">
 <link rel="import" href="input/client-name-input.html">
 <link rel="import" href="input/tos-uri-input.html">
 <link rel="import" href="input/client-uri-input.html">
@@ -19,11 +19,11 @@
 <link rel="import" href="input/contacts-input.html">
 <link rel="import" href="input/description-input.html">
 
-<polymer-element name="authlete-component-client-basic" attributes="resources data locale">
+<polymer-element name="client-display-basic" attributes="resources data locale">
 
   <template>
 
-    <link rel="stylesheet" href="authlete-component-client-basic.css">
+    <link rel="stylesheet" href="client-display-basic.css">
 
     <div id="container">
 
@@ -318,20 +318,20 @@
   </template>
 
   <!-- Authlete Parameter Definition -->
-  <script src="authlete-component-client-default-data.js"></script>
-  <script src="authlete-component-client-resources_en.js"></script>
-  <script src="definition/application-type-def.js"></script>
-  <script src="definition/client-type-def.js"></script>
-  <script src="definition/response-types.js"></script>
-  <script src="definition/grant-types.js"></script>
+  <script src="default-data.js"></script>
+  <script src="resources_en.js"></script>
+  <script src="../definition/application-type-def.js"></script>
+  <script src="../definition/client-type-def.js"></script>
+  <script src="../definition/response-types.js"></script>
+  <script src="../definition/grant-types.js"></script>
 
   <script>
     (function() {
       Polymer({
 
         created: function () {
-          this.data = authlete_component_client_default_data;
-          this.resources = authlete_component_client_resources_en;
+          this.data = default_data;
+          this.resources = resources_en;
           this.application_type_definition = application_type_definition;
           this.client_type_definition = client_type_definition;
           this.response_types_definition = response_types_definition;
