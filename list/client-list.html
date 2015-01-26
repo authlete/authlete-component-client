@@ -1,0 +1,134 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../page-er/page-er.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../core-item/core-item.html">
+<link rel="import" href="../../core-icon/core-icon.html">
+
+<polymer-element name="client-list" attributes="locale perpage data">
+
+  <template>
+    <link rel="stylesheet" href="client-list.css">
+
+    <p class="title">{{resources.title}}</p>
+    <paper-button class="create-button" onclick="location.href='{{config.clientCreatePage}}'">
+      {{resources.createButtonLabel}}
+    </paper-button>
+
+    <div class="items">
+      <template id="results" repeat="{{items}}">
+        <div class="item">
+          <img class="icon" src="{{logoUri}}">
+          <div class="name">
+            <a href="{{clientUri}}"><strong>{{clientName}}</strong></a>
+          </div>
+          <div class="description">{{description}}</div>
+        </div>
+      </template>
+    </div>
+    <page-er id="pager" perpage="{{perpage}}"></page-er>
+
+  </template>
+
+  <script src="resources_en.js"></script>
+  <script src="resources_ja.js"></script>
+  <script src="configuration.js"></script>
+  <script>
+    (function() {
+      Polymer({
+
+        //--------------------------------
+        // Public parameters.
+        //--------------------------------
+
+        /**
+         * The language information in which this component is represented.
+         *
+         * @attribute locale
+         * @type string
+         * @default 'en'
+         */
+        locale: 'en',
+
+        /**
+         * The number of information to show in a page.
+         *
+         * @attribute perpage
+         * @type number
+         * @default 5
+         */
+        perpage: 5,
+
+        /**
+         * The list of information representing a client application.
+         *
+         * @attribute data
+         * @type array
+         * @default []
+         */
+        data: [],
+
+        //--------------------------------
+        // Private parameters.
+        //--------------------------------
+
+        /**
+         * The resources representing the properties of a client application on the UI.
+         * This value will vary depending on the 'locale' value.
+         *
+         * @attribute resources
+         * @type Object
+         * @default authlete_component_client_resources_en
+         */
+        resources: resources_en,
+
+        /**
+         * The configuration of this element.
+         * This includes information about the urls
+         * for creating client applications.
+         *
+         * @attribute config
+         * @type Object
+         * @default configuration
+         */
+        config: configuration,
+
+        ready: function() {
+          this.setUpResources();
+          this.initPager();
+        },
+
+        setUpResources: function() {
+          // Set the resource depending on the given locale information.
+          switch (this.locale) {
+            case 'ja':
+              this.resources = resources_ja;
+              break;
+
+            default:
+              this.locale = 'en';
+              this.resources = resources_en;
+              break;
+          }
+        },
+
+        initPager: function() {
+          // Set the client apps data to the pager.
+          this.$.pager.data = this.data;
+
+          // Set the pager's event listeners.
+          var that = this;
+
+          document.addEventListener('pager-data', function(e) {
+            that.$.results.model = { items: e.detail.data };
+          });
+
+          document.addEventListener('pager-change', function(e) {
+            that.$.results.model = { items: e.detail.data };
+          });
+        }
+
+      });
+    })();
+  </script>
+
+</polymer-element>

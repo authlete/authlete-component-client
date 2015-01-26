@@ -1,0 +1,71 @@
+:host {
+  display: block;
+  padding: 60px 180px 60px 180px;
+  background-color: #fcfcfc;
+  color: lightslategray;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Segoe UI', 'Arial', sans-serif;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.details {
+  clear: both;
+}
+
+.sub-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.update-button {
+  background-color: #ff4ec4;
+  color: #ffffff;
+  float: right;
+  margin-bottom: 1.0em;
+}
+
+.delete-button {
+  background-color: #ff0b21;
+  color: #ffffff;
+  float: right;
+  margin-bottom: 1.0em;
+}
+
+.primary:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.logo {
+  float: left;
+  width: 80px;
+  height: 80px;
+  padding-right: 0.5em;
+}
+
+.name {
+  font-size: 25px;
+  padding-bottom: 0.5em;
+}
+
+.description {
+
+}
+
+table.detail {
+ border-spacing: 0px;
+}
+
+table.detail tbody tr {
+  font-size: 18px;
+}
+
+table.detail tbody tr td {
+  padding: 0.5em 1.0em 0.5em 1.0em;
+  border-bottom: 1pt lightgray solid;
+}

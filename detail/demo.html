@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>authlete-component-client Demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="client-detail.html">
+</head>
+<body unresolved>
+
+  <client-detail id="detail" locale="ja"></client-detail>
+
+  <script>
+    var data = {
+      "clientId": 1234567890,
+      "clientName": "Test Client",
+      "description": "Test Description",
+      "responseTypes" : [ "CODE", "TOKEN" ],
+      "logoUri": "Oauth_logo.png"
+    };
+
+    document.querySelector('#detail').data = data;
+  </script>
+</body>
+</html>

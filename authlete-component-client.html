@@ -13,57 +13,54 @@
       <paper-tab id="tabAdvanced" name="advanced">Advanced</paper-tab>
     </paper-tabs>
 
-    <authlete-component-client-display id="display" mode="basic" resources="{{resources}}" data="{{data}}" locale="{{locale}}"></authlete-component-client-display>
+    <authlete-component-client-display id="display" mode="basic" data="{{data}}" locale="{{locale}}"></authlete-component-client-display>
   </template>
 
   <!-- Authlete Parameter Definition -->
-  <script src="authlete-component-client-resources_en.js"></script>
-  <script src="authlete-component-client-resources_ja.js"></script>
   <script src="authlete-component-client-default-data.js"></script>
 
   <script>
     (function() {
       Polymer({
 
-        created: function () {
-          this.setUpResources();
-          this.data = authlete_component_client_default_data;
-        },
+        /**
+         * The language information in which this component is represented.
+         *
+         * @attribute locale
+         * @type string
+         * @default 'en'
+         */
+        locale: 'en',
 
-        ready: function () {
+        /**
+         * The data regarding a client application.
+         *
+         * @attribute data
+         * @type Object
+         * @default authlete_component_client_default_data
+         */
+        data: authlete_component_client_default_data,
+
+        ready: function() {
           this.setUpDisplayMode();
-        },
-
-        setUpResources: function () {
-          // Set the resource depending on the given locale information.
-          switch (this.locale) {
-            case "ja":
-              this.resources = authlete_component_client_resources_ja;
-              break;
-
-            default:
-              this.locale = "en";
-              this.resources = authlete_component_client_resources_en;
-              break;
-          }
         },
 
         setUpDisplayMode: function () {
           var that = this;
 
-          // If the 'tabBasic' gets clicked, change the display mode to the "basic" mode.
-          this.$.tabBasic.addEventListener("click", function () {
-            if (that.$.display.mode !== "basic")
+          // If the 'tabBasic' gets clicked, change the display mode to the 'basic' mode.
+          this.$.tabBasic.addEventListener('click', function () {
+            if (that.$.display.mode !== 'basic')
             {
-              that.$.display.mode = "basic";
+              that.$.display.mode = 'basic';
             }
           });
 
-          // If the 'tabAdvanced' gets clicked, change the display mode to the "advanced" mode.
-          this.$.tabAdvanced.addEventListener("click", function () {
-            if (that.$.display.mode !== "advanced")
+          // If the 'tabAdvanced' gets clicked, change the display mode to the 'advanced' mode.
+          this.$.tabAdvanced.addEventListener('click', function () {
+            if (that.$.display.mode !== 'advanced')
             {
-              that.$.display.mode = "advanced";
+              that.$.display.mode = 'advanced';
             }
           });
         }

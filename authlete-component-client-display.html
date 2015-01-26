@@ -5,7 +5,7 @@
 <link rel="import" href="../paper-shadow/paper-shadow.html">
 <link rel="import" href="../ajax-form/ajax-form.html">
 
-<polymer-element name="authlete-component-client-display" attributes="mode resources config data locale">
+<polymer-element name="authlete-component-client-display" attributes="locale mode data">
 
   <template>
     <link rel="stylesheet" href="authlete-component-client-display.css">
@@ -41,22 +41,99 @@
     (function() {
       Polymer({
 
-        created: function () {
-          this.mode = "basic";
-          this.config = config;
-          this.resources = authlete_component_client_resources_en;
-          this.errorMessage = "";
-        },
+        //--------------------------------
+        // Public parameters.
+        //--------------------------------
 
-        ready: function () {
+        /**
+         * The language information in which this component is represented.
+         *
+         * @attribute locale
+         * @type string
+         * @default 'en'
+         */
+        locale: 'en',
+
+        /**
+         * The mode of this element.
+         * This can be 'basic' or 'advanced'.
+         *
+         * @attribute mode
+         * @type string
+         * @default 'basic'
+         */
+        mode: 'basic',
+
+        /**
+         * The data regarding a client application.
+         *
+         * @attribute data
+         * @type Object
+         * @default []
+         */
+        data: [],
+
+        //--------------------------------
+        // Private Parameters.
+        //--------------------------------
+
+        /**
+         * The resources representing this elements in this component
+         * such as the names of the properties.
+         * This value will vary depending on the 'locale' value.
+         *
+         * @attribute resources
+         * @type Object
+         * @default authlete_component_client_resources_en
+         */
+        resources: authlete_component_client_resources_en,
+
+        /**
+         * The configuration of creating and updating client applications.
+         * This includes information about the urls
+         * for creating and updating client applications.
+         *
+         * @attribute config
+         * @type Object
+         * @default config
+         */
+        config: authlete_component_client_configuration,
+
+        /**
+         * The error message about creating or updating client applications.
+         *
+         * @attribute errorMessage
+         * @type string
+         * @default ''
+         */
+        errorMessage: '',
+
+        ready: function() {
+          // Set up the resoruces.
+          this.setUpResources();
+
           // Set the event listeners to the form.
           this.setFormEventListeners();
 
-          // Hide the error.
-          this.$.error.style.visibility = "hidden";
+          // Hide the error part.
+          this.$.error.style.visibility = 'hidden';
         },
 
-        setFormEventListeners: function () {
+        setUpResources: function () {
+          // Set the resource depending on the given locale information.
+          switch (this.locale) {
+            case 'ja':
+              this.resources = authlete_component_client_resources_ja;
+              break;
+
+            default:
+              this.locale = 'en';
+              this.resources = authlete_component_client_resources_en;
+              break;
+          }
+        },
+
+        setFormEventListeners: function() {
           var that = this;
 
           // On invalid data.
@@ -69,12 +146,14 @@
           });
         },
 
-        sendData: function () {
+        sendData: function() {
           // Validate the data.
-          try {
+          try
+          {
             validate(this.data);
           }
-          catch (e) {
+          catch (e)
+          {
             this.showError(e);
 
             return;
@@ -90,8 +169,10 @@
         extractNonEmptyData: function () {
           var nonEmptyData = {};
 
-          for (var key in this.data) {
-            if (isEmpty(this.data[key]) === false) {
+          for (var key in this.data)
+          {
+            if (isEmpty(this.data[key]) === false)
+            {
               nonEmptyData[key] = this.data[key];
             }
           }
@@ -117,13 +198,15 @@
         },
 
         setFormData: function (data) {
-          for (var key in data) {
-            if (data.hasOwnProperty(key)) {
-              var hiddenField = document.createElement("input");
+          for (var key in data)
+          {
+            if (data.hasOwnProperty(key))
+            {
+              var hiddenField = document.createElement('input');
 
-              hiddenField.setAttribute("type", "hidden");
-              hiddenField.setAttribute("name", key);
-              hiddenField.setAttribute("value", data[key]);
+              hiddenField.setAttribute('type', 'hidden');
+              hiddenField.setAttribute('name', key);
+              hiddenField.setAttribute('value', data[key]);
 
               this.$.formData.appendChild(hiddenField);
             }
@@ -135,11 +218,11 @@
           this.errorMessage = data;
 
           // Show the error.
-          this.$.error.style.visibility = "visible";
+          this.$.error.style.visibility = 'visible';
 
           // Scroll back to the error.
-          location.href = "#";
-          location.href = "#error";
+          location.href = '#';
+          location.href = '#error';
         }
 
       });

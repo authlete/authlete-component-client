@@ -1,0 +1,273 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+
+<polymer-element name="client-detail" attributes="locale data">
+
+  <template>
+    <link rel="stylesheet" href="client-detail.css">
+
+    <div class="content">
+      <p class="title">App Details</p>
+
+      <div class="primary">
+        <img class="logo" src="{{data.logoUri}}">
+        <div class="name">
+          <strong>{{data.clientName}}</strong>
+        </div>
+        <div class="description">{{data.description}}</div>
+      </div>
+
+      <paper-button class="delete-button" onclick="location.href='{{config.clientDeleteEndpoint}}'">
+        {{resources.deleteButtonLabel}}
+      </paper-button>
+      <paper-button class="update-button" onclick="location.href='{{config.clientUpdatePage}}'">
+        {{resources.updateButtonLabel}}
+      </paper-button>
+
+      <div class="details">
+        <!-- Basic -->
+        <p class="sub-title">Basic</p>
+
+        <table class="detail basic">
+          <tbody>
+            <tr>
+              <td class="param-name">{{resources.clientId}}</td>
+              <td class="param-value">{{getData(data.clientId)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.clientSecret}}</td>
+              <td class="param-value">{{getData(data.clientSecret)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.clientName}}</td>
+              <td class="param-value">{{getData(data.clientName)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.applicationType}}</td>
+              <td class="param-value">{{getData(data.applicationType)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.responseTypes}}</td>
+              <td class="param-value">{{joinByComma(data.responseTypes)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.grantTypes}}</td>
+              <td class="param-value">{{joinByComma(data.grantTypes)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.redirectUris}}</td>
+              <td class="param-value">{{joinByComma(data.redirectUris)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.contacts}}</td>
+              <td class="param-value">{{joinByComma(data.contacts)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.description}}</td>
+              <td class="param-value">{{getData(data.description)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.clientUri}}</td>
+              <td class="param-value">{{getData(data.clientUri)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.logoUri}}</td>
+              <td class="param-value">{{getData(data.logoUri)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.policyUri}}</td>
+              <td class="param-value">{{getData(data.policyUri)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.tosUri}}</td>
+              <td class="param-value">{{getData(data.tosUri)}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Advanced -->
+        <p class="sub-title">Advanced</p>
+
+        <table class="detail advanced">
+          <tbody>
+            <tr>
+              <td class="param-name">{{resources.subjectType}}</td>
+              <td class="param-value">{{getData(data.subjectType)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.sectorIdentifierUri}}</td>
+              <td class="param-value">{{getData(data.sectorIdentifierUri)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.loginUri}}</td>
+              <td class="param-value">{{getData(data.loginUri)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.requestUris}}</td>
+              <td class="param-value">{{joinByComma(data.requestUris)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.defaultMaxAge}}</td>
+              <td class="param-value">{{getData(data.defaultMaxAge)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.defaultAcrs}}</td>
+              <td class="param-value">{{joinByComma(data.defaultAcrs)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.jwksUri}}</td>
+              <td class="param-value">{{getData(data.jwksUri)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.jwks}}</td>
+              <td class="param-value">{{getData(data.jwks)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.idTokenSignAlg}}</td>
+              <td class="param-value">{{getData(data.idTokenSignAlg)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.idTokenEncryptionAlg}}</td>
+              <td class="param-value">{{getData(data.idTokenEncryptionAlg)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.idTokenEncryptionEnc}}</td>
+              <td class="param-value">{{getData(data.idTokenEncryptionEnc)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.userInfoSignAlg}}</td>
+              <td class="param-value">{{getData(data.userInfoSignAlg)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.userInfoEncryptionAlg}}</td>
+              <td class="param-value">{{getData(data.userInfoEncryptionAlg)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.userInfoEncryptionEnc}}</td>
+              <td class="param-value">{{getData(data.userInfoEncryptionEnc)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.requestSignAlg}}</td>
+              <td class="param-value">{{getData(data.requestSignAlg)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.requestEncryptionAlg}}</td>
+              <td class="param-value">{{getData(data.requestEncryptionAlg)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.requestEncryptionEnc}}</td>
+              <td class="param-value">{{getData(data.requestEncryptionEnc)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.tokenAuthMethod}}</td>
+              <td class="param-value">{{getData(data.tokenAuthMethod)}}</td>
+            </tr>
+            <tr>
+              <td class="param-name">{{resources.tokenAuthSignAlg}}</td>
+              <td class="param-value">{{getData(data.tokenAuthSignAlg)}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </template>
+
+  <script src="resources_en.js"></script>
+  <script src="resources_ja.js"></script>
+  <script src="configuration.js"></script>
+  <script>
+    (function() {
+      Polymer({
+
+        //--------------------------------
+        // Public parameters.
+        //--------------------------------
+
+        /**
+         * The language information in which this component is represented.
+         *
+         * @attribute locale
+         * @type string
+         * @default 'en'
+         */
+        locale: 'en',
+
+        /**
+         * The list of information representing a client application.
+         *
+         * @attribute data
+         * @type array
+         * @default []
+         */
+        data: [],
+
+        //--------------------------------
+        // Private parameters.
+        //--------------------------------
+
+        /**
+         * The resources representing this elements in this component
+         * such as the names of the properties.
+         * This value will vary depending on the 'locale' value.
+         *
+         * @attribute resources
+         * @type Object
+         * @default authlete_component_client_resources_en
+         */
+        resources: resources_en,
+
+        /**
+         * The configuration of this element.
+         * This includes information about the urls
+         * for updating and deleting client applications.
+         *
+         * @attribute config
+         * @type Object
+         * @default configuration
+         */
+        config: configuration,
+
+        ready: function() {
+          this.setUpResources();
+        },
+
+        setUpResources: function() {
+          // Set the resource depending on the given locale information.
+          switch (this.locale) {
+            case 'ja':
+              this.resources = resources_ja;
+              break;
+
+            default:
+              this.locale = 'en';
+              this.resources = resources_en;
+              break;
+          }
+        },
+
+        getData: function(data) {
+          return data ? data : 'None';
+        },
+
+        joinByComma: function(data) {
+          if (data == null)
+          {
+            return 'None';
+          }
+
+          // Concat all data by ','.
+          var result = data[0];
+
+          for (var i = 1; i < data.length; i++)
+          {
+            result += ',' + data[i];
+          }
+
+          return result;
+        }
+
+      });
+    })();
+  </script>
+
+</polymer-element>

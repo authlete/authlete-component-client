@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  /*border: 1px solid steelblue;*/
+  padding: 10px 180px 10px 180px;
+  background-color: #fcfcfc;
+  color: lightslategray;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Segoe UI', 'Arial', sans-serif;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+
+.items {
+  overflow: auto;
+  height: 700px;
+  clear: both;
+}
+
+.create-button {
+  background-color: #03a9f4;
+  color: #ffffff;
+  float: right;
+  margin-bottom: 1.0em;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.item {
+  background-color: rgba(236, 236, 236, 0.49);
+  border-radius: 15px;
+  padding: 0.5em;
+  margin-top: 1.0em;
+  margin-bottom: 1.0em;
+}
+
+.item:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.icon {
+  float: left;
+  width: 80px;
+  height: 80px;
+  padding-right: 0.5em;
+}
+
+.name {
+  font-size: 25px;
+  padding-bottom: 0.5em;
+}
+
+.description {
+
+}
